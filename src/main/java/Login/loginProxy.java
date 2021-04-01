@@ -9,7 +9,7 @@ import java.util.*;
 public class loginProxy {
     Set<user> list = new HashSet<user>();
     public loginProxy() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File("usernames"));
+        Scanner scanner = new Scanner(new File("src/main/java/Login/usernames"));
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             List<String> userInfo = Arrays.asList(line.split(",", -1));
