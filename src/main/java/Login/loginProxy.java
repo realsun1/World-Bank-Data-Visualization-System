@@ -40,7 +40,7 @@ public class loginProxy {
     public void insertUser(user newUser){
         String newString= "\n"+newUser.getUserName()+","+newUser.getPassword();
         try {
-            FileWriter fw = new FileWriter("usernames",true);
+            FileWriter fw = new FileWriter("src/main/java/Login/usernames",true);
             fw.write(newString);
             fw.close();
         }catch (IOException e) {
