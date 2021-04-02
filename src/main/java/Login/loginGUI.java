@@ -24,29 +24,35 @@ public class loginGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String p = textField1.getText();
                 String q = passwordField1.getText();
-                loginHandler login = new loginHandler();
-                int result = 0;
-                try {
-                    result = login.checkUser(p, q);
-                } catch (FileNotFoundException | NoSuchAlgorithmException fileNotFoundException) {
-                    fileNotFoundException.printStackTrace();
-                }
-                if (result == 1) {
-                    JOptionPane.showMessageDialog(rootPanel, "User found");
-                    dispose();
-                }
-                if (result == 2) {
-                    JOptionPane.showMessageDialog(rootPanel, "Username found - Password Incorrect");
+                if (p.isEmpty() | q.isEmpty()) {
+                    JOptionPane.showMessageDialog(rootPanel, "Field empty");
                     textField1.setText("");
                     passwordField1.setText("");
-                }
-                if (result == 3) {
-                    JOptionPane.showMessageDialog(rootPanel, "Create a new user");
-                    textField1.setText("");
-                    passwordField1.setText("");
-                    createUserUI createUser = new createUserUI();
-                    createUser.setVisible(true);
-                    createUser.setLocationRelativeTo(null);
+                } else {
+                    loginHandler login = new loginHandler();
+                    int result = 0;
+                    try {
+                        result = login.checkUser(p, q);
+                    } catch (FileNotFoundException | NoSuchAlgorithmException fileNotFoundException) {
+                        fileNotFoundException.printStackTrace();
+                    }
+                    if (result == 1) {
+                        JOptionPane.showMessageDialog(rootPanel, "User found");
+                        dispose();
+                    }
+                    if (result == 2) {
+                        JOptionPane.showMessageDialog(rootPanel, "Username found - Password Incorrect");
+                        textField1.setText("");
+                        passwordField1.setText("");
+                    }
+                    if (result == 3) {
+                        JOptionPane.showMessageDialog(rootPanel, "Create a new user");
+                        textField1.setText("");
+                        passwordField1.setText("");
+                        createUserUI createUser = new createUserUI();
+                        createUser.setVisible(true);
+                        createUser.setLocationRelativeTo(null);
+                    }
                 }
             }
         });
@@ -141,4 +147,5 @@ public class loginGUI extends JFrame {
     public JComponent $$$getRootComponent$$$() {
         return rootPanel;
     }
+
 }

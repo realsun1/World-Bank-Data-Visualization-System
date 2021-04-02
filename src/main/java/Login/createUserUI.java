@@ -31,15 +31,21 @@ public class createUserUI extends JFrame {
                 loginHandler instance = new loginHandler();
                 String p = textField1.getText();
                 String q = passwordField1.getText();
-                String pass = null;
-                try {
-                    pass = instance.encodePass(q);
-                } catch (NoSuchAlgorithmException noSuchAlgorithmException) {
-                    noSuchAlgorithmException.printStackTrace();
+                if (p.isEmpty() | q.isEmpty()) {
+                    JOptionPane.showMessageDialog(rootPanel, "Field empty");
+                    textField1.setText("");
+                    passwordField1.setText("");
+                } else {
+                    String pass = null;
+                    try {
+                        pass = instance.encodePass(q);
+                    } catch (NoSuchAlgorithmException noSuchAlgorithmException) {
+                        noSuchAlgorithmException.printStackTrace();
+                    }
+                    user newUser = new user(p, pass);
+                    users.insertUser(newUser);
+                    dispose();
                 }
-                user newUser = new user(p, pass);
-                users.insertUser(newUser);
-                dispose();
             }
         });
     }
@@ -161,4 +167,5 @@ public class createUserUI extends JFrame {
     public JComponent $$$getRootComponent$$$() {
         return rootPanel;
     }
+
 }
