@@ -8,6 +8,7 @@ import java.util.*;
 
 public class loginProxy {
     Set<user> list = new HashSet<user>();
+
     public loginProxy() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File("usernames"));
         while (scanner.hasNextLine()) {
@@ -18,32 +19,32 @@ public class loginProxy {
         }
     }
 
-    public void printUserList(){
+    public void printUserList() {
         for (user user : list) {
             System.out.println(user.getUserName());
             System.out.println(user.getPassword());
         }
     }
 
-    public int checkUser(String username,String pass){
-        for(user user: list){
-            if(username.equals(user.getUserName())&&(pass.equals(user.getPassword()))){
+    public int checkUser(String username, String pass) {
+        for (user user : list) {
+            if (username.equals(user.getUserName()) && (pass.equals(user.getPassword()))) {
                 return 1;
             }
-            if(username.equals(user.getUserName())){
+            if (username.equals(user.getUserName())) {
                 return 2;
             }
         }
         return 3;
     }
 
-    public void insertUser(user newUser){
-        String newString= "\n"+newUser.getUserName()+","+newUser.getPassword();
+    public void insertUser(user newUser) {
+        String newString = "\n" + newUser.getUserName() + "," + newUser.getPassword();
         try {
-            FileWriter fw = new FileWriter("usernames",true);
+            FileWriter fw = new FileWriter("usernames", true);
             fw.write(newString);
             fw.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("File not found!");
         }
     }
