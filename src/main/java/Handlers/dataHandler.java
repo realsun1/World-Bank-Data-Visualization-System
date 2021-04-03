@@ -1,17 +1,17 @@
 package Handlers;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
 
 public class dataHandler {
 
 	dataHandler(){
-		
+
 	}
-	
 	
 	
 	public Map<Integer, Double> parseJSON(String json) { 
@@ -33,11 +33,51 @@ public class dataHandler {
 		dataDict.put(yearValue, dataValue);
 			
 	}
-
+		
+		
 		return dataDict;
 	}
 	
-	
+	public ArrayList<countryObj> fetchCountries() { 
+		ArrayList<countryObj> countryList = new ArrayList<countryObj>();
+		String[] invalidAnalysis;
+		countryObj country = null;
+		String line = "";  
+		String splitBy = ",";  
+		try   
+		{  
+
+		BufferedReader br = new BufferedReader(new FileReader("country_list.csv"));  
+		while ((line = br.readLine()) != null)   //returns a Boolean value  
+		{  
+		String[] fileLine = line.split(splitBy);    // use comma as separator  
+		
+		for(int i =0;i<fileLine.length;i++) {
+			
+			if (i == 4) { 
+				invalidAnalysis = fileLine[4].split("/");
+				
+				if (fileLine[3].equals("Now")) {
+					country = new countryObj(fileLine[0],fileLine[1],Integer.valueOf(fileLine[2]),2020, invalidAnalysis);
+				} else {
+					 country = new countryObj(fileLine[0],fileLine[1],Integer.valueOf(fileLine[2]),Integer.valueOf(fileLine[3]), invalidAnalysis);
+				}
+			}
+			
+  
+		}
+		
+		countryList.add(country);
+		
+		}  
+		}   
+		catch (IOException e)   
+		{  
+		e.printStackTrace();  
+		}  
+		
+		return countryList;
+}
 
 }
 	
