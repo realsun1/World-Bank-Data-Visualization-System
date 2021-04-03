@@ -1,7 +1,10 @@
+package Handlers;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
-import java.util.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class dataHandler {
 
@@ -30,8 +33,7 @@ public class dataHandler {
 		dataDict.put(yearValue, dataValue);
 			
 	}
-		
-		
+
 		return dataDict;
 	}
 	
