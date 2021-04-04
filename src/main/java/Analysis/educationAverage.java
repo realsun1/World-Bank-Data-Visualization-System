@@ -1,17 +1,18 @@
 package Analysis;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
-public class forestAverage implements Analysis{
+public class educationAverage implements Analysis {
+
+	
 	private Double results;
 	private ArrayList<Map<Integer, Double>> dataValues;
 	private Integer start;
 	private Integer end;
 	
 	
-	public forestAverage(ArrayList<Map<Integer, Double>> dataValues,Integer start, Integer end) { 
+	public educationAverage(ArrayList<Map<Integer, Double>> dataValues,Integer start, Integer end) { 
 		this.dataValues = dataValues;
 		this.start = start;
 		this.end = end;
@@ -20,14 +21,15 @@ public class forestAverage implements Analysis{
 	
 	@Override
 	public void performComputation() {
-			Double totalArea = 0.0;
+			Double totalSpending = 0.0;
 			
 			for (int i = start; i < end ; i++) {
-				totalArea += (dataValues.get(0)).get(i);
-				
+				totalSpending += (dataValues.get(0)).get(i);
+				System.out.println(totalSpending);
 	
 			}
-			results = totalArea / (end - start);
+			results = totalSpending / (end - start);
+
 		
 	}
 
@@ -35,5 +37,11 @@ public class forestAverage implements Analysis{
 		// TODO Auto-generated method stub
 		return results;
 	}
+
+	
+	
+	
+	
+	
 
 }

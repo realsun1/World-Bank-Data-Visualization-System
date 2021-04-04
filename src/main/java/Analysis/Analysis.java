@@ -7,7 +7,6 @@ public interface Analysis {
 
 	
 	public void performComputation();
-	public ArrayList<Map<Integer, Double>> getResults();
 
 }
 

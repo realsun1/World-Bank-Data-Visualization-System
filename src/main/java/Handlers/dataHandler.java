@@ -28,10 +28,7 @@ public class dataHandler {
 				dataValue = 0.0;
 			else
 				dataValue = Double.parseDouble((jsonArray.get(1).getAsJsonArray().get(i).getAsJsonObject().get("value").getAsString()));
-			
-
 		dataDict.put(yearValue, dataValue);
-			
 	}
 		
 		

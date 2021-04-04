@@ -9,7 +9,7 @@ public class emissVsEnergyVsPollution implements Analysis {
 	private ArrayList<Map<Integer, Double>> results = new ArrayList<Map<Integer, Double>>();
 
 
-	emissVsEnergyVsPollution(ArrayList<Map<Integer, Double>> dataValues) { 
+	public emissVsEnergyVsPollution(ArrayList<Map<Integer, Double>> dataValues) { 
 		this.results = dataValues;
 	}
 	
@@ -21,7 +21,7 @@ public class emissVsEnergyVsPollution implements Analysis {
 	}
 
 
-	@Override
+
 	public ArrayList<Map<Integer, Double>> getResults() {
 		// TODO Auto-generated method stub
 		return results;

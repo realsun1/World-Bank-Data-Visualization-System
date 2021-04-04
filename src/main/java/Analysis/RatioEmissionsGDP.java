@@ -32,7 +32,7 @@ public class RatioEmissionsGDP implements Analysis {
 		results.add(computationResults);
 	}
 
-	@Override
+
 	public ArrayList<Map<Integer, Double>> getResults() {
 		// TODO Auto-generated method stub
 		return results;
