@@ -16,11 +16,11 @@ public class networkHandler {
 
 	
 	
-	public String fetchJSON(String countryName, String analysisType, String dateRange) {
+	public String fetchJSON(countryObj country, String analysisType, String dateRange) {
 		String urlString = String.format(
-				"http://api.worldbank.org/v2/country/%s/indicator/%s?date=%s&format=json", countryName,analysisType,dateRange);
+				"http://api.worldbank.org/v2/country/%s/indicator/%s?date=%s&format=json", country.getCountryCode(),analysisType,dateRange);
 
-		
+		System.out.println(urlString);
 		
 		try {
 			URL url = new URL(urlString);

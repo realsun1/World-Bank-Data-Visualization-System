@@ -23,6 +23,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/navjeevenmann/Downloads/jfreechart-1.5.3.jar"/>
+	<classpathentry kind="lib" path="/Users/navjeevenmann/Developer/iOS/group23/jfreechart-1.5.3.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

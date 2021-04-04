@@ -1,8 +1,17 @@
 package resultModel;
 
 public class resultModel extends Subject {
-
-	resultModel(){
-		
+	private Analysis currentAnalysis;
+	
+	
+	resultModel(Analysis analysis){
+		this.currentAnalysis = analysis;
 	}
+
+
+	public Analysis getCurrentAnalysis() {
+		return currentAnalysis;
+	}
+
+
 }
