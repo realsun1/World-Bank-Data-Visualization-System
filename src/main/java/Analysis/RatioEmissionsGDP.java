@@ -1,35 +1,42 @@
 package Analysis;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class RatioEmissionsGDP implements Analysis {
 
-	private Map<Integer, Double> emissions;
-	private Map<Integer, Double> gdp;
-	private int start;
-	private int end;
-	private Map<Integer, Double> results = new HashMap<Integer, Double>();
 
-	public RatioEmissionsGDP(Map<Integer, Double> emissionMap, Map<Integer, Double> gdpMap, int year1, int year2){
-		emissions=emissionMap;
-		gdp=gdpMap;
-		start=year1;
-		end=year2;
+	private ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
+	private Integer start;
+	private Integer end;
+	private ArrayList<Map<Integer, Double>> results = new ArrayList<Map<Integer, Double>>();
+
+	public RatioEmissionsGDP(ArrayList<Map<Integer, Double>> data, Integer start, Integer end){
+		this.dataValues = data;
+		this.start = start;
+		this.end = end;
+		
 		performComputation();
+
 	}
 
 	public void performComputation() {
+		Map<Integer, Double> computationResults = new HashMap<Integer, Double>();
+		
 		for (int i = start; i < end ; i++) {
-			Double e = emissions.get(i);
-			Double g = gdp.get(i);
-			results.put(i,(e/g));
+			Double g = (dataValues.get(0)).get(i);
+			Double e = (dataValues.get(1)).get(i);
+			computationResults.put(i,(e/g));
 		}
+		results.add(computationResults);
 	}
 
-	public void getResults() {
-		results.entrySet().forEach(entry -> {
-			System.out.println(entry.getKey() + " " + entry.getValue());
-		});
+	@Override
+	public ArrayList<Map<Integer, Double>> getResults() {
+		// TODO Auto-generated method stub
+		return results;
 	}
+
+
 }
