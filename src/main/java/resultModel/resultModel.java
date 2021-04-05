@@ -1,10 +1,12 @@
 package resultModel;
 
+import Analysis.Analysis;
+
 public class resultModel extends Subject {
 	private Analysis currentAnalysis;
 	
 	
-	resultModel(Analysis analysis){
+	public resultModel(Analysis analysis){
 		this.currentAnalysis = analysis;
 	}
 

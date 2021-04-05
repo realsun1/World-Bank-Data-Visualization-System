@@ -11,6 +11,18 @@
 			<url>https://maven.java.net/content/repositories/releases/</url>
 			<layout>default</layout>
 		</repository>
+		  <repository>
+			  <id>mulesoft-releases</id>
+			  <name>MuleSoft Repository</name>
+			  <url>http://repository.mulesoft.org/releases/</url>
+			  <layout>default</layout>
+		  </repository>
+		  <repository>
+			  <id>mulesoft-snapshots</id>
+			  <name>MuleSoft Snapshot Repository</name>
+			  <url>http://repository.mulesoft.org/snapshots/</url>
+			  <layout>default</layout>
+		  </repository>
 	</repositories>
 
 	<dependencies>
@@ -19,6 +31,12 @@
 				<artifactId>gson</artifactId>
 				<version>2.2.2</version>
 			 </dependency>
+			<!-- https://mvnrepository.com/artifact/jfree/jfreechart -->
+			<dependency>
+				<groupId>org.jfree</groupId>
+				<artifactId>jfreechart</artifactId>
+				<version>1.5.3</version>
+			</dependency>
 	</dependencies>
 
 	<properties>
