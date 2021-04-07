@@ -9,7 +9,8 @@ public class expenditureVsMortality implements Analysis {
 	private String[] legend = new String[]{"Current health expenditure", "Mortality rate, infant"};
 	private String[] labels = new String[]{"Expenditure", "Mortality"};
 	private String title = "Current health expenditure per capita vs Mortality rate, infant";
-	
+	private String[] validGraphs = {"Line Chart","Bar Chart","Scatter Chart","Report"};
+
 	
 	public expenditureVsMortality(ArrayList<Map<Integer, Double>> dataValues) {
 		this.results = dataValues;
@@ -38,6 +39,12 @@ public class expenditureVsMortality implements Analysis {
 	public ArrayList<Map<Integer, Double>> getResults() {
 		// TODO Auto-generated method stub
 		return results;
+	}
+
+	@Override
+	public String[] getGraphs() {
+		// TODO Auto-generated method stub
+		return validGraphs;
 	}
 	
 }

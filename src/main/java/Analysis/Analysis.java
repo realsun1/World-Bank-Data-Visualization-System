@@ -16,6 +16,8 @@ public interface Analysis {
 	public String getTitle();
 
 	public String[]getLabels();
+	
+	public String[] getGraphs();
 
 
 }

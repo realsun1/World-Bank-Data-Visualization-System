@@ -9,7 +9,7 @@ import java.util.*;
 
 public class dataHandler {
 
-	dataHandler(){
+	public dataHandler(){
 
 	}
 	

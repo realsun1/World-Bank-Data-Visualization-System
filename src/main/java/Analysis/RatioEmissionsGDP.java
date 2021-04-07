@@ -14,6 +14,7 @@ public class RatioEmissionsGDP implements Analysis {
 	private String[] legend = new String[]{"CO2 emissions", "GDP per capita"};
 	private String[] labels = new String[]{"Emissions", "GDP"};
 	private String title = "Ratio of CO2 emissions (metric tons per capita) and GDP per capita";
+	private String[] validGraphs = {"Bar Chart", "Line Chart", "Scatter Chart"};
 
 	public RatioEmissionsGDP(ArrayList<Map<Integer, Double>> data, Integer start, Integer end){
 		this.dataValues = data;
@@ -26,11 +27,17 @@ public class RatioEmissionsGDP implements Analysis {
 
 	public void performComputation() {
 		Map<Integer, Double> computationResults = new HashMap<Integer, Double>();
+	
+		for(Map<Integer, Double> data: dataValues) {
+			
+			for(Integer year: data.keySet()) {
+				Double g = (dataValues.get(0)).get(year);
+				Double e = (dataValues.get(1)).get(year);
 		
-		for (int i = start; i < end ; i++) {
-			Double g = (dataValues.get(0)).get(i);
-			Double e = (dataValues.get(1)).get(i);
-			computationResults.put(i,(g/e));
+				computationResults.put(year,(g/e));
+			
+			}
+			
 		}
 		results.add(computationResults);
 	}
@@ -53,6 +60,12 @@ public class RatioEmissionsGDP implements Analysis {
 	public ArrayList<Map<Integer, Double>> getResults() {
 		// TODO Auto-generated method stub
 		return results;
+	}
+
+	@Override
+	public String[] getGraphs() {
+		// TODO Auto-generated method stub
+		return validGraphs;
 	}
 
 
