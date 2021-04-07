@@ -28,7 +28,7 @@ public class RatioEmissionsGDP implements Analysis {
 	public void performComputation() {
 		Map<Integer, Double> computationResults = new HashMap<Integer, Double>();
 	
-		for(Map<Integer, Double> data: dataValues) {
+		for(Map<Integer, Double> data: cleanData()) {
 			
 			for(Integer year: data.keySet()) {
 				Double g = (dataValues.get(0)).get(year);
@@ -66,6 +66,29 @@ public class RatioEmissionsGDP implements Analysis {
 	public String[] getGraphs() {
 		// TODO Auto-generated method stub
 		return validGraphs;
+	}
+
+	@Override
+	public ArrayList<Map<Integer, Double>> cleanData() {
+		ArrayList<Map<Integer, Double>> cleanData = new ArrayList<Map<Integer, Double>>();
+		
+		for(Map<Integer, Double> list: dataValues) {
+			Map<Integer, Double> cleanValues = new HashMap<Integer, Double>();
+
+			for(Integer year: list.keySet()) {
+				
+				if (list.get(year) != 0.0) {
+					cleanValues.put(year, list.get(year));
+				}
+				
+				
+			}
+			cleanData.add(cleanValues);
+			
+		}
+		
+		
+		return cleanData;
 	}
 
 

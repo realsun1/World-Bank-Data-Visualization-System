@@ -1,6 +1,7 @@
 package Handlers;
 import java.util.ArrayList;
 import java.util.Map;
+
 import Analysis.Analysis;
 
 public class validChecker {
@@ -12,9 +13,7 @@ public class validChecker {
 	}
 	
 	public boolean checkYears(int startYear, int endYear, countryObj country) { 
-	
-
-		return !((endYear - startYear) <= 0 || (startYear <= country.getValidStart() || endYear >= country.getValidEnd()));
+		return ((endYear - startYear) <= 0 || (startYear < country.getValidStart() || endYear > country.getValidEnd()));
 	}
 	
 	

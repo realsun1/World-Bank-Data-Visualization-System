@@ -64,4 +64,30 @@ public class bedVsExpenditure implements Analysis {
 		return validGraphs;
 	}
 
+
+	@Override
+	public ArrayList<Map<Integer, Double>> cleanData() {
+
+			ArrayList<Map<Integer, Double>> cleanData = new ArrayList<Map<Integer, Double>>();
+			
+			for(Map<Integer, Double> list: dataValues) {
+				Map<Integer, Double> cleanValues = new HashMap<Integer, Double>();
+
+				for(Integer year: list.keySet()) {
+					
+					if (list.get(year) != 0.0) {
+						cleanValues.put(year, list.get(year));
+					}
+					
+					
+				}
+				cleanData.add(cleanValues);
+				
+			}
+			
+			
+			return cleanData;
+		
+	}
+
 }

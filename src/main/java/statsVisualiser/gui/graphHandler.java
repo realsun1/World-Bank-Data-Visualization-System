@@ -1,6 +1,19 @@
 package statsVisualiser.gui;
 
-import Analysis.Analysis;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.util.Map;
+import java.util.Set;
+
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JViewport;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -14,7 +27,6 @@ import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.chart.renderer.xy.XYSplineRenderer;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.chart.util.TableOrder;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -24,11 +36,7 @@ import org.jfree.data.time.Year;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
+import Analysis.Analysis;
 
 public class graphHandler {
     DefaultCategoryDataset barSet = new DefaultCategoryDataset();
@@ -41,7 +49,6 @@ public class graphHandler {
     void createReport(JPanel west, Analysis analysis) {
         JTextArea report = new JTextArea();
         report.setEditable(false);
-        report.setPreferredSize(new Dimension(400, 300));
         report.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         report.setBackground(Color.white);
         StringBuilder reportMessage;
@@ -53,7 +60,7 @@ public class graphHandler {
             first=Math.min(first,entry.getKey());
             last=Math.max(first,entry.getKey());
         }
-        for (int i = first; i < last; i++) {
+        for (int i = first; i <= last; i++) {
             reportMessage.append("Year: "+i+"\n");
             reportMessage.append("\t"+analysis.getLegend()[0] + "=>"+analysis.getResults().get(0).get(i)+"\n");
             if (analysis.getResults().size()>=2){
@@ -68,6 +75,8 @@ public class graphHandler {
 
         report.setText(reportMessage.toString());
         JScrollPane outputScrollPane = new JScrollPane(report);
+        outputScrollPane.setPreferredSize(new Dimension(400, 300));
+
         int verticalPolicy = JScrollPane.VERTICAL_SCROLLBAR_ALWAYS;
         outputScrollPane.setVerticalScrollBarPolicy(verticalPolicy);
         west.add(outputScrollPane);

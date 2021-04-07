@@ -1,11 +1,12 @@
 package Analysis;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class emissVsEnergyVsPollution implements Analysis {
 
-	private ArrayList<Map<Integer, Double>> results = new ArrayList<Map<Integer, Double>>();
+	private ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
 	private String[] legend = new String[]{"CO2 emissions", "Energy Use","Air Pollution"};
 	private String[] labels = new String[]{"CO2", "Energy","Pollution"};
 	private String title = "CO2 emissions vs Energy Use vs PM2.5 Air Pollution";
@@ -13,7 +14,8 @@ public class emissVsEnergyVsPollution implements Analysis {
 
 
 	public emissVsEnergyVsPollution(ArrayList<Map<Integer, Double>> dataValues) { 
-		results = dataValues;
+		this.dataValues = dataValues;
+		cleanData();
 	}
 
 	@Override
@@ -38,13 +40,38 @@ public class emissVsEnergyVsPollution implements Analysis {
 
 	public ArrayList<Map<Integer, Double>> getResults() {
 		// TODO Auto-generated method stub
-		return results;
+		return dataValues;
 	}
 
 	@Override
 	public String[] getGraphs() {
 		// TODO Auto-generated method stub
 		return validGraphs;
+	}
+
+	@Override
+	public ArrayList<Map<Integer, Double>> cleanData() {
+
+			ArrayList<Map<Integer, Double>> cleanData = new ArrayList<Map<Integer, Double>>();
+			
+			for(Map<Integer, Double> list: dataValues) {
+				Map<Integer, Double> cleanValues = new HashMap<Integer, Double>();
+
+				for(Integer year: list.keySet()) {
+					
+					if (list.get(year) != 0.0) {
+						cleanValues.put(year, list.get(year));
+					}
+					
+					
+				}
+				cleanData.add(cleanValues);
+				
+			}
+			
+			
+			return cleanData;
+		
 	}
 
 }

@@ -1,11 +1,13 @@
 package Handlers;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 
 public class dataHandler {
 
@@ -15,6 +17,7 @@ public class dataHandler {
 	
 	
 	public Map<Integer, Double> parseJSON(String json) { 
+		System.out.println(json);
 		JsonArray jsonArray = new JsonParser().parse(json).getAsJsonArray();
 		
 		Map<Integer, Double> dataDict = new HashMap<Integer, Double>();
