@@ -1,4 +1,4 @@
-package statsVisualiser.gui;
+package mainGUI;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -17,11 +17,12 @@ import javax.swing.JPanel;
 
 import Analysis.Analysis;
 import Handlers.analysisFacade;
-import Handlers.countryObj;
 import Handlers.dataHandler;
+import Handlers.graphHandler;
 import Handlers.validChecker;
-import resultModel.resultModel;
-import resultModel.resultObserver;
+import dataModels.countryObj;
+import dataModels.resultModel;
+import dataModels.resultObserver;
 
 
 public class MainUI extends JFrame implements resultObserver {
@@ -187,7 +188,7 @@ public class MainUI extends JFrame implements resultObserver {
 
         public static MainUI getInstance() {
             if (instance == null)
-                instance = new statsVisualiser.gui.MainUI();
+                instance = new mainGUI.MainUI();
             	
 
             return instance;
@@ -195,9 +196,10 @@ public class MainUI extends JFrame implements resultObserver {
 
         public static void main(String[] args) {
 
-            JFrame frame = statsVisualiser.gui.MainUI.getInstance();
+            JFrame frame = mainGUI.MainUI.getInstance();
             frame.setSize(1100, 1000);
             frame.setVisible(true);
+       
             
         }
         

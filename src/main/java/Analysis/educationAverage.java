@@ -9,18 +9,15 @@ public class educationAverage implements Analysis {
 
 	private ArrayList<Map<Integer, Double>> results = new ArrayList<Map<Integer, Double>>();
 	private ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
-	private Integer start;
-	private Integer end;
+
 	private String[] legend = new String[]{"Shown as Total (% of GDP)"};
 	private String[] labels = new String[]{"Percentage of GDP","Total GDP"};
 	private String title="Average of Government expenditure on education";
 	private String[] validGraphs = {"Pie Chart"};
 
 	
-	public educationAverage(ArrayList<Map<Integer, Double>> dataValues,Integer start, Integer end) { 
+	public educationAverage(ArrayList<Map<Integer, Double>> dataValues) { 
 		this.dataValues = dataValues;
-		this.start = start;
-		this.end = end;
 		performComputation();
 	}
 	

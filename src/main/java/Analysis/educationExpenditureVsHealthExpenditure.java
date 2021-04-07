@@ -9,17 +9,14 @@ public class educationExpenditureVsHealthExpenditure implements Analysis {
 
     private ArrayList<Map<Integer, Double>> results = new ArrayList<Map<Integer, Double>>();
     private ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
-    private Integer start;
-    private Integer end;
+
     private String[] legend = new String[]{"Government expenditure on education", "Current health expenditure"};
     private String[] labels = new String[]{"Education", "Health"};
     private String title = "Ratio of Government expenditure on education vs Current health expenditure";
 	private String[] validGraphs = {"Line Chart","Bar Chart","Scatter Chart","Report"};
 
-    public educationExpenditureVsHealthExpenditure(ArrayList<Map<Integer, Double>> data, Integer start, Integer end) {
+    public educationExpenditureVsHealthExpenditure(ArrayList<Map<Integer, Double>> data) {
         this.dataValues = data;
-        this.start = start;
-        this.end = end;
         performComputation();
     }
 

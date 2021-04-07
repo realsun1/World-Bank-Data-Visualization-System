@@ -1,4 +1,4 @@
-package resultModel;
+package dataModels;
 
 import java.util.*;
 

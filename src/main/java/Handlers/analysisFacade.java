@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import Analysis.*;
-import resultModel.resultModel;
+import dataModels.countryObj;
+import dataModels.resultModel;
 
 public class analysisFacade {
 
@@ -63,10 +64,9 @@ public class analysisFacade {
             dataValues.add(getMap(country, analysis, dateRange));
         }
 
-        Integer startYear = Integer.valueOf(dateRange.split(":")[0]);
-        Integer endYear = Integer.valueOf(dateRange.split(":")[1]);
+  
 
-        RatioEmissionsGDP analysis = new RatioEmissionsGDP(dataValues, startYear, endYear);
+        RatioEmissionsGDP analysis = new RatioEmissionsGDP(dataValues);
 
 
         return analysis;
@@ -79,10 +79,9 @@ public class analysisFacade {
             dataValues.add(getMap(country, analysis, dateRange));
         }
 
-        Integer startYear = Integer.valueOf(dateRange.split(":")[0]);
-        Integer endYear = Integer.valueOf(dateRange.split(":")[1]);
 
-        forestAverage analysis = new forestAverage(dataValues, startYear, endYear);
+
+        forestAverage analysis = new forestAverage(dataValues);
 
 
         return analysis;
@@ -95,10 +94,9 @@ public class analysisFacade {
             dataValues.add(getMap(country, analysis, dateRange));
         }
 
-        Integer startYear = Integer.valueOf(dateRange.split(":")[0]);
-        Integer endYear = Integer.valueOf(dateRange.split(":")[1]);
 
-        educationAverage analysis = new educationAverage(dataValues, startYear, endYear);
+
+        educationAverage analysis = new educationAverage(dataValues);
 
 
         return analysis;
@@ -112,10 +110,9 @@ public class analysisFacade {
             dataValues.add(getMap(country, analysis, dateRange));
         }
 
-        Integer startYear = Integer.valueOf(dateRange.split(":")[0]);
-        Integer endYear = Integer.valueOf(dateRange.split(":")[1]);
 
-        bedVsExpenditure analysis = new bedVsExpenditure(dataValues, startYear, endYear);
+
+        bedVsExpenditure analysis = new bedVsExpenditure(dataValues);
 
 
         return analysis;
@@ -141,10 +138,9 @@ public class analysisFacade {
         for (String analysis : analysisType) {
             dataValues.add(getMap(country, analysis, dateRange));
         }
-        Integer startYear = Integer.valueOf(dateRange.split(":")[0]);
-        Integer endYear = Integer.valueOf(dateRange.split(":")[1]);
 
-        educationExpenditureVsHealthExpenditure analysis = new educationExpenditureVsHealthExpenditure(dataValues, startYear, endYear);
+
+        educationExpenditureVsHealthExpenditure analysis = new educationExpenditureVsHealthExpenditure(dataValues);
 
 
         return analysis;

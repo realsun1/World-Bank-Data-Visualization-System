@@ -1,4 +1,4 @@
-package statsVisualiser.gui;
+package Handlers;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -46,7 +46,9 @@ public class graphHandler {
     TimeSeriesCollection scatterSet2 = new TimeSeriesCollection();
     XYSeriesCollection lineSet = new XYSeriesCollection();
 
-    void createReport(JPanel west, Analysis analysis) {
+  
+    
+    public void createReport(JPanel west, Analysis analysis) {
         JTextArea report = new JTextArea();
         report.setEditable(false);
         report.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
@@ -82,7 +84,7 @@ public class graphHandler {
         west.add(outputScrollPane);
     }
 
-    void createScatter(JPanel west, Analysis analysis) {
+   public void createScatter(JPanel west, Analysis analysis) {
     	scatterSet.removeAllSeries();
     	scatterSet2.removeAllSeries();
         TimeSeries series1=new TimeSeries("1");
@@ -140,7 +142,7 @@ public class graphHandler {
         west.add(chartPanel);
     }
 
-    void createPie(JPanel west, Analysis analysis) {
+   public void createPie(JPanel west, Analysis analysis) {
 
        pieSet.clear();
         					
@@ -161,7 +163,7 @@ public class graphHandler {
         west.add(chartPanel);
     }
 
-    void createBar(JPanel west, Analysis analysis) {
+   public void createBar(JPanel west, Analysis analysis) {
 
     	barSet.clear();
     	barSet2.clear();
@@ -216,7 +218,7 @@ public class graphHandler {
         west.add(chartPanel);
     }
 
-    void createLine(JPanel west, Analysis analysis) {
+   public void createLine(JPanel west, Analysis analysis) {
         XYSeries series1=new XYSeries("1");
         XYSeries series2=new XYSeries("2");
         XYSeries series3=new XYSeries("3");

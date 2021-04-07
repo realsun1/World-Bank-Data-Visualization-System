@@ -9,6 +9,8 @@ import java.util.Map;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
+import dataModels.countryObj;
+
 public class dataHandler {
 
 	public dataHandler(){
@@ -17,7 +19,6 @@ public class dataHandler {
 	
 	
 	public Map<Integer, Double> parseJSON(String json) { 
-		System.out.println(json);
 		JsonArray jsonArray = new JsonParser().parse(json).getAsJsonArray();
 		
 		Map<Integer, Double> dataDict = new HashMap<Integer, Double>();
