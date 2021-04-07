@@ -14,7 +14,8 @@ public class educationAverage implements Analysis {
 	private String[] legend = new String[]{"Shown as Total (% of GDP)"};
 	private String[] labels = new String[]{"Percentage of GDP","Total GDP"};
 	private String title="Average of Government expenditure on education";
-	
+	private String[] validGraphs = {"Pie Chart"};
+
 	
 	public educationAverage(ArrayList<Map<Integer, Double>> dataValues,Integer start, Integer end) { 
 		this.dataValues = dataValues;
@@ -27,10 +28,14 @@ public class educationAverage implements Analysis {
 	public void performComputation() {
 			Double totalSpending = 0.0;
 			
-			for (int i = start; i < end ; i++) {
-				System.out.println(dataValues.get(0).get(i));
-				totalSpending += (dataValues.get(0)).get(i);
+			for(Map<Integer, Double> data: dataValues) {
+				
+				for(Integer year: data.keySet()) {
+					totalSpending += (dataValues.get(0)).get(year);
+				}
+				
 			}
+			
 		Map<Integer, Double> map = new HashMap<Integer, Double>();
 		double avg = totalSpending / (end - start);
 		map.put(0,avg);
@@ -57,5 +62,11 @@ public class educationAverage implements Analysis {
 	@Override
 	public String[] getLegend() {
 		return legend;
+	}
+
+	@Override
+	public String[] getGraphs() {
+		// TODO Auto-generated method stub
+		return validGraphs;
 	}
 }

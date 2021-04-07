@@ -8,6 +8,7 @@ public class pollutionVsForest implements Analysis {
 	private String[] legend = new String[]{"PM2.5 air pollution", "Forest area (% of land area)"};
 	private String[] labels = new String[]{"Pollution", "Area"};
 	private String title = "PM2.5 air pollution vs Forest area";
+	private String[] validGraphs = {"Line Chart","Bar Chart","Scatter Chart","Report"};
 
 	
 	public pollutionVsForest(ArrayList<Map<Integer, Double>> dataValues) {
@@ -40,7 +41,14 @@ public class pollutionVsForest implements Analysis {
 
 	@Override
 	public String getTitle() {
-		System.out.println(results.size());
 		return title;
+	}
+
+
+
+	@Override
+	public String[] getGraphs() {
+		// TODO Auto-generated method stub
+		return validGraphs;
 	}
 }

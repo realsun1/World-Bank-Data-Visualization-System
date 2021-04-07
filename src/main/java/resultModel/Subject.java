@@ -14,7 +14,13 @@ public abstract class Subject {
 		observerList.remove(observer);
 	}
 	
-	public void notifyObservers() {
+	public void notifyCreateGraph() {
+		for (resultObserver observer: observerList) {
+			observer.createGraphs();
+		}
+	}
+	
+	public void notifyUpdateGraph() {
 		for (resultObserver observer: observerList) {
 			observer.updateGraphs();
 		}

@@ -4,84 +4,56 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import Analysis.*;
+import resultModel.resultModel;
 
 public class analysisFacade {
 
-    private String[] countryList = {"Botswana","Cambodia","Canada","Cyprus","United States Minor Outlying Islands"};
 
-    public static void main(String[] args) {
-        /*dataHandler handler = new dataHandler();
-        String[] analysis = {"SH.MED.BEDS.ZS", "SH.XPD.CHEX.PC.CD"};
-        analysisFacade facade = new analysisFacade();
-        facade.getBedVsExpenditure(handler.fetchCountries().get(0), analysis, "2000:2020");*/
+    public void getData(countryObj country, String analysisType, String dateRange, resultModel currentModel) {
+    
+
+    	 switch (analysisType) {
+
+            case "EEP":
+            	emissVsEnergyVsPollution emissVsEnergyVsPollutionAnalysis = this.getEmissVsEnergyVsPollution(country, dateRange);
+            	currentModel.setCurrentAnalysis(emissVsEnergyVsPollutionAnalysis);
+            	break;
+            case "PVF":
+            	pollutionVsForest pollutionVsForestAnalysis = this.getPollutionVsForest(country, dateRange);
+            	currentModel.setCurrentAnalysis(pollutionVsForestAnalysis);
+            	break;
+            case "GEG":
+            	RatioEmissionsGDP emissionGDPAnalysis = this.getEmissionGDP(country, dateRange);
+            	currentModel.setCurrentAnalysis(emissionGDPAnalysis);
+            	break;
+            case "GFA":
+            	forestAverage forestAnalysis = this.getForestAverage(country, dateRange);
+            	currentModel.setCurrentAnalysis(forestAnalysis);
+            	break;
+            case "EAV":
+            	educationAverage educationAnalysis = this.getEducationAverage(country, dateRange);
+            	currentModel.setCurrentAnalysis(educationAnalysis);
+            	break;
+            case "BVE":
+            	bedVsExpenditure bedVsExpenditureAnalysis = this.getBedVsExpenditure(country, dateRange);
+            	currentModel.setCurrentAnalysis(bedVsExpenditureAnalysis);
+            	break;
+            case "EVM":
+            	expenditureVsMortality expenditureVsMortalityAnalysis = this.getExpenditureVsMortality(country, dateRange);
+            	currentModel.setCurrentAnalysis(expenditureVsMortalityAnalysis);
+            	break;
+            case "EVH":
+            	educationExpenditureVsHealthExpenditure educationVsHealthAnalysis = this.getEducationExpenditureVsHealthExpenditure(country, dateRange);
+            	currentModel.setCurrentAnalysis(educationVsHealthAnalysis);
+            	break;
+
+        }
+
+
+
+        
+       
     }
-
-    public Analysis analysisTest(String country, String dateRange, String analysisType){
-        dataHandler handler = new dataHandler();
-        analysisFacade facade = new analysisFacade();
-        countryObj countryObj = null;
-        for (int i = 0; i < countryList.length ; i++) {
-            if (countryList[i].equals(country)) {
-                 countryObj = handler.fetchCountries().get(i);
-            }
-        }
-        Analysis analysis = null;
-        //Ratio of CO2 emissions (metric tons per capita) and GDP per capita (current US$)
-        if ("GEG".equals(analysisType)) {
-            analysis = facade.getEmissionGDP(countryObj, dateRange);
-        }
-        //Average Forest area (% of land area) for the selected years
-        else if ("GFA".equals(analysisType)) {
-            analysis = facade.getForestAverage(countryObj, dateRange);
-        }
-        //PM2.5 air pollution, mean annual exposure (micrograms per cubic meter) vs Forest area (% of land area)
-        else if ("PVF".equals(analysisType)) {
-            analysis = facade.getPollutionVsForest(countryObj, dateRange);
-        }
-        //CO2 emissions (metric tons per capita) vs Energy use (kg of oil equivalent per capita) vs PM2.5 air pollution, mean annual exposure (micrograms per cubic meter)
-        else if ("EEP".equals(analysisType)) {
-            analysis = facade.getEmissVsEnergyVsPollution(countryObj, dateRange);
-        }
-        //Current health expenditure per capita (current US$) vs Mortality rate, infant (per 1,000 live births)
-        else if ("EVM".equals(analysisType)) {
-            analysis = facade.getExpenditureVsMortality(countryObj, dateRange);
-        }
-        //Ratio of Hospital beds (per 1,000 people) and Current health expenditure (per 1,000 people)
-        else if ("BVE".equals(analysisType)) {
-            analysis = facade.getBedVsExpenditure(countryObj, dateRange);
-        }
-        //Ratio of Government expenditure on education, total (% of GDP) vs Current health expenditure (% of GDP).
-        else if ("EVH".equals(analysisType)) {
-            analysis = facade.getEducationExpenditureVsHealthExpenditure(countryObj, dateRange);
-        }
-        //Average of Government expenditure on education, total (% of GDP) for the selected years
-        else if ("EAV".equals(analysisType)) {
-            analysis = facade.getEducationAverage(countryObj, dateRange);
-        }
-
-        return analysis;
-
-    }
-
-
-    /*public resultModel getData(countryObj country, String[] analysisType, String dateRange) {
-
-
-        String analysisValues = String.join(",", analysisType);
-
-        switch (analysisValues) {
-
-            case "EN.ATM.CO2E.PC,NY.GDP.PCAP.CD":
-
-                // From here call the certain method to get that analysis type.
-
-
-        }
-
-
-        resultModel model = new resultModel();
-        return model;
-    }*/
 
 
     private RatioEmissionsGDP getEmissionGDP(countryObj country, String dateRange) {
@@ -207,7 +179,7 @@ public class analysisFacade {
     }
 
 
-    public Map<Integer, Double> getMap(countryObj country, String analysisType, String dateRange) {
+    private Map<Integer, Double> getMap(countryObj country, String analysisType, String dateRange) {
         dataHandler dataHandler = new dataHandler();
         networkHandler network = new networkHandler();
         String test = network.fetchJSON(country, analysisType, dateRange);

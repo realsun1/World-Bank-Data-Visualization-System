@@ -2,24 +2,31 @@ package statsVisualiser.gui;
 
 import Analysis.Analysis;
 import Handlers.analysisFacade;
+import Handlers.countryObj;
+import Handlers.*;
+import resultModel.*;
 
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
 import javax.swing.*;
 
+import org.jfree.chart.ChartPanel;
 
-public class MainUI extends JFrame {
+
+public class MainUI extends JFrame implements resultObserver {
         /**
          *
          */
@@ -27,37 +34,44 @@ public class MainUI extends JFrame {
 
         private static MainUI instance;
         private String analysisType;
-        private Analysis currentAnalysis;
-
+        private resultModel currentModel = new resultModel();
+        private validChecker validChecker = new validChecker();
+        private ArrayList<countryObj> countryList;
         private Set<String> viewers = new HashSet<String>();
+        private JPanel west;
+        private graphHandler graphInstance = new graphHandler();
 
         private MainUI() {
-
+        	
             // Set window title
             super("Country Statistics");
+        	currentModel.attatch(this);
+
 
             // Set top bar
             JLabel chooseCountryLabel = new JLabel("Choose a country: ");
             Vector<String> countriesNames = new Vector<String>();
-            countriesNames.add("Botswana");
-            countriesNames.add("Cambodia");
-            countriesNames.add("Canada");
-            countriesNames.add("Cyprus");
-            countriesNames.add("United States Minor Outlying Islands");
+            dataHandler handler = new dataHandler();
+            countryList = handler.fetchCountries();
+            countryList.forEach((x) -> countriesNames.add(x.getCountryName()));
             countriesNames.sort(null);
             JComboBox<String> countriesList = new JComboBox<String>(countriesNames);
 
             JLabel from = new JLabel("From");
             JLabel to = new JLabel("To");
-            Vector<String> years = new Vector<String>();
-            for (int i = 2021; i >= 2000; i--) {
-                years.add("" + i);
+            Vector<String> toYears = new Vector<String>();
+            Vector<String> fromYears = new Vector<String>();
+
+            for (int i = 2020; i >= 1962; i--) {
+            	toYears.add("" + i);
+            	fromYears.insertElementAt(""+i, 0);
             }
 
 
-            JComboBox<String> fromList = new JComboBox<String>(years);
-            JComboBox<String> toList = new JComboBox<String>(years);
-
+            JComboBox<String> fromList = new JComboBox<String>(fromYears);
+            JComboBox<String> toList = new JComboBox<String>(toYears);
+          
+            
             JPanel north = new JPanel();
             north.add(chooseCountryLabel);
             north.add(countriesList);
@@ -110,9 +124,9 @@ public class MainUI extends JFrame {
             JPanel east = new JPanel();
 
             // Set charts region
-            JPanel west = new JPanel();
+            west = new JPanel();
             west.setLayout(new GridLayout(2, 0));
-            createCharts(west,null,null);
+           // createCharts(west,null,null);
 
             getContentPane().add(north, BorderLayout.NORTH);
             getContentPane().add(east, BorderLayout.EAST);
@@ -121,23 +135,26 @@ public class MainUI extends JFrame {
 
             //Add a view
             addView.addActionListener(e -> {
-                if (!viewers.contains(viewsList.getSelectedItem().toString())){
+            	  if (viewers.contains(viewsList.getSelectedItem().toString())){
+                      JOptionPane.showMessageDialog(getInstance(), "Viewer is already being shown!");
+                  } else if (!validChecker.checkValidGraphs(currentModel.getCurrentAnalysis(), viewsList.getSelectedItem().toString())) {
+                	  JOptionPane.showMessageDialog(getInstance(), "Viewer is not valid for current analysis!");
+                  } else {
                     viewers.add(viewsList.getSelectedItem().toString());
-                    createCharts(west,currentAnalysis,analysisType);
+                    createCharts(west,currentModel.getCurrentAnalysis());
                     instance.invalidate();
                     instance.validate();
                     instance.repaint();
                 }
-                else{
-                    JOptionPane.showMessageDialog(getInstance(), "Viewer is already being shown!");
-                }
+              
             });
             //Remove a view
 
             removeView.addActionListener(e -> {
                 if (viewers.contains(viewsList.getSelectedItem().toString())){
                     viewers.remove(viewsList.getSelectedItem().toString());
-                    createCharts(west,currentAnalysis,analysisType);
+                    createCharts(west,currentModel.getCurrentAnalysis());
+                    System.out.println("Removing");
                     instance.invalidate();
                     instance.validate();
                     instance.repaint();
@@ -149,17 +166,22 @@ public class MainUI extends JFrame {
 
             //Recalculate
             recalculate.addActionListener(e -> {
-                west.removeAll();
-                int currentMethod = methodsList.getSelectedIndex();
-                analysisType = codes[currentMethod];
+            	 int currentMethod = methodsList.getSelectedIndex();
+                 analysisType = codes[currentMethod];
+                 countryObj country= countryList.get(countriesList.getSelectedIndex());
+                 String startYear = fromList.getSelectedItem().toString();
+                 String endYear = toList.getSelectedItem().toString();
+
+            	if (!validChecker.checkCountryAnalysis(analysisType, country)) {
+                    JOptionPane.showMessageDialog(getInstance(), "Chosen Analysis not valid for "+country.getCountryName()+"!");
+            	} else if (validChecker.checkYears(Integer.parseInt(startYear),Integer.parseInt(endYear) , country)) {
+            		JOptionPane.showMessageDialog(getInstance(), "Please enter valid years between "+startYear+" to "+ endYear +"!");
+            	} else {
+               
                 Handlers.analysisFacade analysisInstance = new analysisFacade();
-                String country=countriesList.getSelectedItem().toString();
-                String yearRange=String.format("%s:%s",fromList.getSelectedItem().toString(),toList.getSelectedItem().toString());
-                currentAnalysis = analysisInstance.analysisTest(country, yearRange, analysisType);
-                createCharts(west,currentAnalysis,analysisType);
-                instance.invalidate();
-                instance.validate();
-                instance.repaint();
+                String yearRange=String.format("%s:%s",startYear,endYear);
+                analysisInstance.getData(country, analysisType, yearRange,currentModel);
+            	}
             });
 
 
@@ -168,6 +190,7 @@ public class MainUI extends JFrame {
         public static MainUI getInstance() {
             if (instance == null)
                 instance = new statsVisualiser.gui.MainUI();
+            	
 
             return instance;
         }
@@ -175,31 +198,77 @@ public class MainUI extends JFrame {
         public static void main(String[] args) {
 
             JFrame frame = statsVisualiser.gui.MainUI.getInstance();
-            frame.setSize(1100, 800);
+            frame.setSize(1100, 1000);
             frame.setVisible(true);
+            
         }
+        
+        
+       
+        
+        
 
-        private void createCharts(JPanel west,Analysis analysis, String analysisType) {
+        private void createCharts(JPanel west,Analysis analysis) {
             west.removeAll();
-            graphHandler graphInstance = new graphHandler();
-            System.out.println(viewers);
+            
             for (String viewer: viewers) {
-                if (viewer.equals("Line Chart")) graphInstance.createLine(west,analysis);
-                if (viewer.equals("Bar Chart")) graphInstance.createBar(west,analysis);
-                if (viewer.equals("Pie Chart")) graphInstance.createPie(west,analysis);
-                if (viewer.equals("Scatter Chart")) graphInstance.createScatter(west,analysis);
-                if (viewer.equals("Report")) graphInstance.createReport(west,analysis);
+            	System.out.println(viewer);
+                if (viewer.equals("Line Chart")) {
+                	graphInstance.createLine(west,analysis);
+                }
+                if (viewer.equals("Bar Chart")) {
+                	graphInstance.createBar(west,analysis);
+                }
+                if (viewer.equals("Pie Chart")) {
+                	graphInstance.createPie(west,analysis);
+                }
+                if (viewer.equals("Scatter Chart")) {
+                	graphInstance.createScatter(west,analysis);
+                }
+                if (viewer.equals("Report")) {
+                	graphInstance.createReport(west,analysis);
+                }
+            	viewers.add(viewer);
+
+            }
+        }
+        
+
+        
+        
+
+		@Override
+		public void updateGraphs() {
+            graphInstance.updateCharts(west, currentModel.getCurrentAnalysis(),viewers);
+		}
+
+		@Override
+		public void createGraphs() {
+			// TODO Auto-generated method stub
+            if (!currentModel.checkSame()) {
+            	
+                viewers =  new HashSet<>(Arrays.asList(currentModel.getCurrentAnalysis().getGraphs()));
+
+            
+            if (validChecker.checkData(currentModel.getCurrentAnalysis().getResults())) {
+                createCharts(west,currentModel.getCurrentAnalysis());
+                instance.invalidate();
+                instance.validate();
+                instance.repaint();
+            } else {
+        		JOptionPane.showMessageDialog(getInstance(), "No data to display for the chosen years!");
+
             }
 
-
-
-        }
-
-
-
+        	}
+			
+		}
 
 
 
 
-    }
+
+
+
+}
 

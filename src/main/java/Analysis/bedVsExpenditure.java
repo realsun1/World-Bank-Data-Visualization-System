@@ -14,6 +14,7 @@ public class bedVsExpenditure implements Analysis {
 	private String[] legend = new String[]{"Ratio of Hospital beds","Current health expenditure"};
 	private String[] labels = new String[]{"Hospital Beds","Health Expenditure"};
 	private String title="Ratio of Hospital beds and Current health expenditure (per 1000 people)";
+	private String[] validGraphs = {"Line Chart","Bar Chart","Scatter Chart","Report Chart"};
 	private ArrayList<Map<Integer, Double>> results = new ArrayList<Map<Integer, Double>>();
 	
 	public bedVsExpenditure(ArrayList<Map<Integer, Double>> data, Integer start, Integer end) { 
@@ -27,8 +28,13 @@ public class bedVsExpenditure implements Analysis {
 	@Override
 	public void performComputation() {
 		Map<Integer, Double> map = new HashMap<Integer, Double>();
-		for (int i = start; i < end ; i++) {
-			map.put(i,((dataValues.get(0).get(i))/(dataValues.get(0).get(i))));
+	
+		for(Map<Integer, Double> data: dataValues) {
+			
+			for(Integer year: data.keySet()) {
+				map.put(year,((dataValues.get(0).get(year))/(dataValues.get(0).get(year))));
+			}
+			
 		}
 		results.add(map);
 	}
@@ -49,6 +55,13 @@ public class bedVsExpenditure implements Analysis {
 
 	public ArrayList<Map<Integer, Double>> getResults() {
 		return results;
+	}
+
+
+	@Override
+	public String[] getGraphs() {
+		// TODO Auto-generated method stub
+		return validGraphs;
 	}
 
 }

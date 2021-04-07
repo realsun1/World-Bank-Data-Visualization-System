@@ -9,6 +9,7 @@ public class emissVsEnergyVsPollution implements Analysis {
 	private String[] legend = new String[]{"CO2 emissions", "Energy Use","Air Pollution"};
 	private String[] labels = new String[]{"CO2", "Energy","Pollution"};
 	private String title = "CO2 emissions vs Energy Use vs PM2.5 Air Pollution";
+	private String[] validGraphs = {"Line Chart","Bar Chart","Scatter Chart","Report"};
 
 
 	public emissVsEnergyVsPollution(ArrayList<Map<Integer, Double>> dataValues) { 
@@ -38,6 +39,12 @@ public class emissVsEnergyVsPollution implements Analysis {
 	public ArrayList<Map<Integer, Double>> getResults() {
 		// TODO Auto-generated method stub
 		return results;
+	}
+
+	@Override
+	public String[] getGraphs() {
+		// TODO Auto-generated method stub
+		return validGraphs;
 	}
 
 }

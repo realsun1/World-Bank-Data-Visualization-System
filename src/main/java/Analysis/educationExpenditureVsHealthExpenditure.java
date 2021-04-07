@@ -14,6 +14,7 @@ public class educationExpenditureVsHealthExpenditure implements Analysis {
     private String[] legend = new String[]{"Government expenditure on education", "Current health expenditure"};
     private String[] labels = new String[]{"Education", "Health"};
     private String title = "Ratio of Government expenditure on education vs Current health expenditure";
+	private String[] validGraphs = {"Line Chart","Bar Chart","Scatter Chart","Report"};
 
     public educationExpenditureVsHealthExpenditure(ArrayList<Map<Integer, Double>> data, Integer start, Integer end) {
         this.dataValues = data;
@@ -42,11 +43,20 @@ public class educationExpenditureVsHealthExpenditure implements Analysis {
     public void performComputation() {
         Map<Integer, Double> computationResults = new HashMap<Integer, Double>();
 
-        for (int i = start; i < end; i++) {
-            Double g = (dataValues.get(0)).get(i);
-            Double e = (dataValues.get(1)).get(i);
-            computationResults.put(i, (e / g));
-        }
+		for(Map<Integer, Double> data: dataValues) {
+			
+			for(Integer year: data.keySet()) {
+			     Double g = (dataValues.get(0)).get(year);
+		         Double e = (dataValues.get(1)).get(year);
+		         if (e != 0.0 && g != 0.0) {
+		      
+		         computationResults.put(year, (e / g));
+		         }
+		  
+			}
+			
+		}
+        
 
         results.add(computationResults);
 
@@ -56,5 +66,11 @@ public class educationExpenditureVsHealthExpenditure implements Analysis {
     public ArrayList<Map<Integer, Double>> getResults() {
         return results;
     }
+
+	@Override
+	public String[] getGraphs() {
+		// TODO Auto-generated method stub
+		return validGraphs;
+	}
 
 }
