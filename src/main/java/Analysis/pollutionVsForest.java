@@ -1,10 +1,11 @@
 package Analysis;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class pollutionVsForest implements Analysis {
-	private ArrayList<Map<Integer, Double>> results = new ArrayList<Map<Integer, Double>>();
+	private ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
 	private String[] legend = new String[]{"PM2.5 air pollution", "Forest area (% of land area)"};
 	private String[] labels = new String[]{"Pollution", "Area"};
 	private String title = "PM2.5 air pollution vs Forest area";
@@ -12,7 +13,8 @@ public class pollutionVsForest implements Analysis {
 
 	
 	public pollutionVsForest(ArrayList<Map<Integer, Double>> dataValues) {
-		this.results = dataValues;
+		this.dataValues = dataValues;
+		cleanData();
 	}
 	
 	
@@ -26,7 +28,7 @@ public class pollutionVsForest implements Analysis {
 
 	public ArrayList<Map<Integer, Double>> getResults() {
 		// TODO Auto-generated method stub
-		return results;
+		return dataValues;
 	}
 
 	@Override
@@ -50,5 +52,30 @@ public class pollutionVsForest implements Analysis {
 	public String[] getGraphs() {
 		// TODO Auto-generated method stub
 		return validGraphs;
+	}
+
+
+
+	@Override
+	public ArrayList<Map<Integer, Double>> cleanData() {
+		ArrayList<Map<Integer, Double>> cleanData = new ArrayList<Map<Integer, Double>>();
+		
+		for(Map<Integer, Double> list: dataValues) {
+			Map<Integer, Double> cleanValues = new HashMap<Integer, Double>();
+
+			for(Integer year: list.keySet()) {
+				
+				if (list.get(year) != 0.0) {
+					cleanValues.put(year, list.get(year));
+				}
+				
+				
+			}
+			cleanData.add(cleanValues);
+			
+		}
+		
+		
+		return cleanData;
 	}
 }

@@ -25,29 +25,29 @@ public class forestAverage implements Analysis{
 	@Override
 	public void performComputation() {
 			Double totalArea = 0.0;
-			Map<Integer, Double> data = cleanData();
-			
-				
-				for(Integer year: data.keySet()) {
+			Map<Integer, Double> cleanData = cleanData().get(0);
+	
+				for(Integer year: cleanData.keySet()) {
 					totalArea += (dataValues.get(0)).get(year);
-				}
+				
+			}
 				
 				
 			
 
 			Map<Integer, Double> map = new HashMap<Integer, Double>();
-			Double avgArea=(totalArea / (data.size()));
+			Double avgArea=(totalArea / (cleanData.size()));
 			map.put(0,totalArea);
 			map.put(1,avgArea);
 			results.add(map);
 	}
 	
-	
-	private Map<Integer, Double> cleanData() {
-		Map<Integer, Double> cleanValues = new HashMap<Integer, Double>();
+	public ArrayList<Map<Integer, Double>> cleanData() {
+		ArrayList<Map<Integer, Double>> cleanData = new ArrayList<Map<Integer, Double>>();
 		
 		for(Map<Integer, Double> list: dataValues) {
-			
+			Map<Integer, Double> cleanValues = new HashMap<Integer, Double>();
+
 			for(Integer year: list.keySet()) {
 				
 				if (dataValues.get(0).get(year) != 0.0) {
@@ -56,10 +56,12 @@ public class forestAverage implements Analysis{
 				
 				
 			}
-			
+			cleanData.add(cleanValues);
 			
 		}
-		return cleanValues;
+		
+		
+		return cleanData;
 	}
 
 	public ArrayList<Map<Integer, Double>> getResults() {

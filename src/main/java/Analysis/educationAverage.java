@@ -27,8 +27,8 @@ public class educationAverage implements Analysis {
 	@Override
 	public void performComputation() {
 			Double totalSpending = 0.0;
-			
-			for(Map<Integer, Double> data: dataValues) {
+		
+			for(Map<Integer, Double> data: cleanData()) {
 				
 				for(Integer year: data.keySet()) {
 					totalSpending += (dataValues.get(0)).get(year);
@@ -37,7 +37,7 @@ public class educationAverage implements Analysis {
 			}
 			
 		Map<Integer, Double> map = new HashMap<Integer, Double>();
-		double avg = totalSpending / (end - start);
+		double avg = totalSpending / (cleanData().get(0).size());
 		map.put(0,avg);
 		map.put(1,totalSpending);
 		results.add(map);
@@ -68,5 +68,31 @@ public class educationAverage implements Analysis {
 	public String[] getGraphs() {
 		// TODO Auto-generated method stub
 		return validGraphs;
+	}
+
+	@Override
+	public ArrayList<Map<Integer, Double>> cleanData() {
+	
+			ArrayList<Map<Integer, Double>> cleanData = new ArrayList<Map<Integer, Double>>();
+			
+			for(Map<Integer, Double> list: dataValues) {
+				Map<Integer, Double> cleanValues = new HashMap<Integer, Double>();
+
+				for(Integer year: list.keySet()) {
+					
+					if (dataValues.get(0).get(year) != 0.0) {
+						cleanValues.put(year, dataValues.get(0).get(year));
+					}
+					
+					
+				}
+				cleanData.add(cleanValues);
+				
+			}
+			
+			
+			return cleanData;
+		
+		
 	}
 }
