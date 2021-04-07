@@ -9,18 +9,15 @@ import java.util.Map;
 public class bedVsExpenditure implements Analysis {
 
 	private ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
-	private Integer start;
-	private Integer end;
+
 	private String[] legend = new String[]{"Ratio of Hospital beds","Current health expenditure"};
 	private String[] labels = new String[]{"Hospital Beds","Health Expenditure"};
 	private String title="Ratio of Hospital beds and Current health expenditure (per 1000 people)";
 	private String[] validGraphs = {"Line Chart","Bar Chart","Scatter Chart","Report Chart"};
 	private ArrayList<Map<Integer, Double>> results = new ArrayList<Map<Integer, Double>>();
 	
-	public bedVsExpenditure(ArrayList<Map<Integer, Double>> data, Integer start, Integer end) { 
+	public bedVsExpenditure(ArrayList<Map<Integer, Double>> data) { 
 		this.dataValues = data;
-		this.start = start;
-		this.end = end;
 		performComputation();
 	}
 	

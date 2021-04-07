@@ -1,4 +1,4 @@
-package Handlers;
+package dataModels;
 
 
 public class countryObj {
@@ -9,7 +9,7 @@ public class countryObj {
 	private Integer validEnd;
 	private String[] invalidAnalysis;
 	
-	countryObj(String countryName,String countryCode,Integer validStart, Integer validEnd, String[] invalidAnalysis) {  
+	public countryObj(String countryName,String countryCode,Integer validStart, Integer validEnd, String[] invalidAnalysis) {  
 		this.countryName = countryName;
 		this.countryCode = countryCode;
 		this.validStart = validStart;

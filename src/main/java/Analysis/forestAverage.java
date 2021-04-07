@@ -7,18 +7,15 @@ import java.util.Map;
 public class forestAverage implements Analysis{
 	private ArrayList<Map<Integer, Double>> results = new ArrayList<Map<Integer, Double>>();
 	private ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
-	private Integer start;
-	private Integer end;
 	private String[] legend = new String[]{"(Shown as a percentage of total land area)"};
 	private String[] labels = new String[]{"Average Forest area", "Total land area"};
 	private String title = "Average Forest area (% of land area)";
 	private String[] validGraphs = {"Pie Chart"};
 
 	
-	public forestAverage(ArrayList<Map<Integer, Double>> dataValues,Integer start, Integer end) { 
+	public forestAverage(ArrayList<Map<Integer, Double>> dataValues) { 
 		this.dataValues = dataValues;
-		this.start = start;
-		this.end = end;
+
 		performComputation();
 	}
 	
