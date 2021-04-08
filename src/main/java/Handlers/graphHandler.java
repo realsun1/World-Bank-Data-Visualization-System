@@ -1,3 +1,10 @@
+/**
+* This class creates the graphs
+* @author  Navjeeven Mann Singh, Omer Noor, Sundin Nguyen, Rhea Gupta
+* @version 1.0
+* @since   2021-04-07
+*/
+
 package Handlers;
 
 import java.awt.BasicStroke;
@@ -39,6 +46,10 @@ import org.jfree.data.xy.XYSeriesCollection;
 import Analysis.Analysis;
 
 public class graphHandler {
+	
+	/*
+	 * these are instance variables creating the different graphs 
+	 */
     DefaultCategoryDataset barSet = new DefaultCategoryDataset();
     DefaultCategoryDataset barSet2 = new DefaultCategoryDataset();
     DefaultCategoryDataset pieSet = new DefaultCategoryDataset();
@@ -46,8 +57,11 @@ public class graphHandler {
     TimeSeriesCollection scatterSet2 = new TimeSeriesCollection();
     XYSeriesCollection lineSet = new XYSeriesCollection();
 
-  
-    
+    /*
+     * this method creates the report
+     * @param west This is the first parameter of the method
+     * @param analysis This is the second parameter of the method, the analysis object contains the property of each analysis
+     */
     public void createReport(JPanel west, Analysis analysis) {
         JTextArea report = new JTextArea();
         report.setEditable(false);
@@ -84,6 +98,11 @@ public class graphHandler {
         west.add(outputScrollPane);
     }
 
+    /*
+     * this method creates a scatter plot
+     * @param west This is the first parameter of the method
+     * @param analysis This is the second parameter of the method, the analysis object contains the property of each analysis
+     */
    public void createScatter(JPanel west, Analysis analysis) {
     	scatterSet.removeAllSeries();
     	scatterSet2.removeAllSeries();
@@ -133,7 +152,7 @@ public class graphHandler {
         }
 
         JFreeChart scatterChart = new JFreeChart(analysis.getTitle(),
-                new Font("Serif", java.awt.Font.BOLD, 18), plot, true);
+                new Font("Serif", Font.BOLD, 18), plot, true);
 
         ChartPanel chartPanel = new ChartPanel(scatterChart);
         chartPanel.setPreferredSize(new Dimension(400, 300));
@@ -142,6 +161,11 @@ public class graphHandler {
         west.add(chartPanel);
     }
 
+   /*
+    * this method creates a pie chart
+    * @param west This is the first parameter of the method
+    * @param analysis This is the second parameter of the method, the analysis object contains the property of each analysis
+    */
    public void createPie(JPanel west, Analysis analysis) {
 
        pieSet.clear();
@@ -163,6 +187,11 @@ public class graphHandler {
         west.add(chartPanel);
     }
 
+   /*
+    * this method creates a bar graph
+    * @param west This is the first parameter of the method, west is the panel the graph is on
+    * @param analysis This is the second parameter of the method, the analysis object contains the property of each analysis
+    */
    public void createBar(JPanel west, Analysis analysis) {
 
     	barSet.clear();
@@ -208,7 +237,7 @@ public class graphHandler {
 
 
         JFreeChart barChart = new JFreeChart(analysis.getTitle(),
-                new Font("Serif", java.awt.Font.BOLD, 18), plot, true);
+                new Font("Serif", Font.BOLD, 18), plot, true);
 
 
         ChartPanel chartPanel = new ChartPanel(barChart);
@@ -217,7 +246,11 @@ public class graphHandler {
         chartPanel.setBackground(Color.white);
         west.add(chartPanel);
     }
-
+   /*
+    * this method creates a line graph
+    * @param west This is the first parameter of the method, west is the panel the graph is on
+    * @param analysis This is the second parameter of the method, the analysis object contains the property of each analysis
+    */
    public void createLine(JPanel west, Analysis analysis) {
         XYSeries series1=new XYSeries("1");
         XYSeries series2=new XYSeries("2");
@@ -271,7 +304,7 @@ public class graphHandler {
         chart.getLegend().setFrame(BlockBorder.NONE);
 
         chart.setTitle(
-                new TextTitle(analysis.getTitle(), new Font("Serif", java.awt.Font.BOLD, 18)));
+                new TextTitle(analysis.getTitle(), new Font("Serif", Font.BOLD, 18)));
 
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(400, 300));
@@ -280,7 +313,12 @@ public class graphHandler {
         west.add(chartPanel);
 
     }
-    
+   
+   /*
+    * this method updates the report
+    * @param west This is the second parameter of the method, west is the panel the graph is on
+    * @param analysis This is the first parameter of the method, the analysis object contains the property of each analysis
+    */
     void updateReport(Analysis analysis, JPanel west) {
         JScrollPane textPane = null;
         StringBuilder reportMessage;
@@ -319,6 +357,10 @@ public class graphHandler {
 
     }
     
+    /*
+     * this method updates a bar graph
+     * @param analysis The analysis object contains the property of each analysis
+     */
     void updateBar(Analysis analysis) { 
     	barSet.clear();
     	barSet2.clear();
@@ -343,6 +385,10 @@ public class graphHandler {
 
     }
     
+    /*
+     * this method updates a line graph
+     * @param analysis The analysis object contains the property of each analysis
+     */
 	void updateLine(Analysis analysis) { 
         XYSeries series1=new XYSeries("1");
         XYSeries series2=new XYSeries("2");
@@ -375,6 +421,10 @@ public class graphHandler {
         }
 	}
 	
+	/*
+     * this method updates a scatter plot
+     * @param analysis The analysis object contains the property of each analysis
+     */
 	void updateScatter(Analysis analysis) { 
 		scatterSet2.removeAllSeries();
 		scatterSet.removeAllSeries();
@@ -406,6 +456,10 @@ public class graphHandler {
         scatterSet.addSeries(series2);
 	}
 	
+	/*
+     * this method updates a pie chart
+     * @param analysis The analysis object contains the property of each analysis
+     */
 	void updatePie(Analysis analysis) {
 		pieSet.clear();
 

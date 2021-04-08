@@ -1,4 +1,15 @@
+/**
+* This class creates the login GUI
+* @author  Navjeeven Mann Singh, Omer Noor, Sundin Nguyen, Rhea Gupta
+* @version 1.0
+* @since   2021-04-07
+*/
+
 package Login;
+
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import mainGUI.MainUI;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -9,11 +20,18 @@ import java.io.FileNotFoundException;
 import java.security.NoSuchAlgorithmException;
 
 public class loginGUI extends JFrame {
+
+    /*
+     * these are the instance variables
+     */
     private JPanel rootPanel;
     private JTextField textField1;
     private JButton loginButton;
     private JPasswordField passwordField1;
 
+    /*
+     * this is the constructor of the class
+     */
     public loginGUI() {
         add(rootPanel);
         setTitle("World Bank Visualization Tool - Login");
@@ -39,6 +57,9 @@ public class loginGUI extends JFrame {
                     if (result == 1) {
                         JOptionPane.showMessageDialog(rootPanel, "User found");
                         dispose();
+                        JFrame frame = MainUI.getInstance();
+                        frame.setSize(1100, 1000);
+                        frame.setVisible(true);
                     }
                     if (result == 2) {
                         JOptionPane.showMessageDialog(rootPanel, "Username found - Password Incorrect");
@@ -78,7 +99,7 @@ public class loginGUI extends JFrame {
         rootPanel.setLayout(new GridBagLayout());
         rootPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(0, 0, 0, 25), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
@@ -88,9 +109,9 @@ public class loginGUI extends JFrame {
         gbc.fill = GridBagConstraints.BOTH;
         rootPanel.add(panel1, gbc);
         textField1 = new JTextField();
-        panel1.add(textField1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        panel1.add(textField1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JPanel panel2 = new JPanel();
-        panel2.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel2.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 1;
@@ -99,9 +120,9 @@ public class loginGUI extends JFrame {
         gbc.fill = GridBagConstraints.BOTH;
         rootPanel.add(panel2, gbc);
         passwordField1 = new JPasswordField();
-        panel2.add(passwordField1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        panel2.add(passwordField1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JPanel panel3 = new JPanel();
-        panel3.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel3.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -112,7 +133,7 @@ public class loginGUI extends JFrame {
         panel3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JLabel label1 = new JLabel();
         label1.setText("Username");
-        panel3.add(label1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel3.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("Password");
         gbc = new GridBagConstraints();
@@ -122,7 +143,7 @@ public class loginGUI extends JFrame {
         gbc.weighty = 1.0;
         rootPanel.add(label2, gbc);
         final JPanel panel4 = new JPanel();
-        panel4.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel4.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 2;
