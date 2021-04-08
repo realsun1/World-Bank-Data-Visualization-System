@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
@@ -58,10 +59,19 @@ public class graphHandler {
         int first=9999;
         int last=-1;
         reportMessage = new StringBuilder(analysis.getTitle() + "\n" + "==============================\n");
-        for (Map.Entry<Integer, Double> entry : analysis.getResults().get(0).entrySet()) {
-            first=Math.min(first,entry.getKey());
-            last=Math.max(first,entry.getKey());
+        for (Map<Integer, Double> entry : analysis.getResults()) {
+        	
+        	if (Collections.min(entry.keySet()) < first) {
+        		first = Collections.min(entry.keySet());
+        	}
+        	
+        	if (Collections.max(entry.keySet()) > last) {
+        		last = Collections.max(entry.keySet());
+        	}
+
         }
+        
+        
         for (int i = first; i <= last; i++) {
             reportMessage.append("Year: "+i+"\n");
             reportMessage.append("\t"+analysis.getLegend()[0] + "=>"+analysis.getResults().get(0).get(i)+"\n");

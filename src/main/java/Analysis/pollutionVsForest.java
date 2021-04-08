@@ -14,7 +14,7 @@ public class pollutionVsForest implements Analysis {
 	
 	public pollutionVsForest(ArrayList<Map<Integer, Double>> dataValues) {
 		this.dataValues = dataValues;
-		cleanData();
+		this.dataValues = cleanData();
 	}
 	
 	

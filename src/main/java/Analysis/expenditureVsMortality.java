@@ -15,7 +15,7 @@ public class expenditureVsMortality implements Analysis {
 	
 	public expenditureVsMortality(ArrayList<Map<Integer, Double>> dataValues) {
 		this.dataValues = dataValues;
-		cleanData();
+		this.dataValues = cleanData();
 	}
 
 	@Override

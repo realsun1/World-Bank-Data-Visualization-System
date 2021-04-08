@@ -26,7 +26,7 @@ public class bedVsExpenditure implements Analysis {
 	public void performComputation() {
 		Map<Integer, Double> map = new HashMap<Integer, Double>();
 	
-		for(Map<Integer, Double> data: dataValues) {
+		for(Map<Integer, Double> data: cleanData()) {
 			
 			for(Integer year: data.keySet()) {
 				map.put(year,((dataValues.get(0).get(year))/(dataValues.get(0).get(year))));

@@ -1,6 +1,7 @@
 package mainGUI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,6 +71,31 @@ public class MainUI extends JFrame implements resultObserver {
             JComboBox<String> fromList = new JComboBox<String>(fromYears);
             JComboBox<String> toList = new JComboBox<String>(toYears);
           
+            fromList.addActionListener(e -> {
+                String startYear = fromList.getSelectedItem().toString();
+                String endYear = toList.getSelectedItem().toString();
+                countryObj country= countryList.get(countriesList.getSelectedIndex());
+            	if (validChecker.checkYears(Integer.parseInt(startYear),Integer.parseInt(endYear) , country)) {
+            		fromList.setForeground(Color.red);
+            		toList.setForeground(Color.red);
+            	} else {
+             		fromList.setForeground(Color.black);
+            		toList.setForeground(Color.black);
+            	}
+            });
+            
+            toList.addActionListener(e -> {
+                String startYear = fromList.getSelectedItem().toString();
+                String endYear = toList.getSelectedItem().toString();
+                countryObj country= countryList.get(countriesList.getSelectedIndex());
+            	if (validChecker.checkYears(Integer.parseInt(startYear),Integer.parseInt(endYear) , country)) {
+            		fromList.setForeground(Color.red);
+            		toList.setForeground(Color.red);
+            	} else {
+             		fromList.setForeground(Color.black);
+            		toList.setForeground(Color.black);
+            	}
+            });
             
             JPanel north = new JPanel();
             north.add(chooseCountryLabel);
@@ -105,11 +131,56 @@ public class MainUI extends JFrame implements resultObserver {
             methodsNames.add("Ratio of Hospital beds and Current health expenditure");
             methodsNames.add("Current health expenditure per capita vs Mortality rate, infant");
             methodsNames.add("Ratio of Government expenditure on education vs Current health expenditure");
+            
+            
+            
+            
+            
             JComboBox<String> methodsList = new JComboBox<String>(methodsNames);
+            
+     
 
             String[] codes = {"EEP","PVF","GEG","GFA","EAV","BVE","EVM","EVH"};
+            
+            viewsList.addActionListener(e -> {
+            	
+            	
+            	if (currentModel.getCurrentAnalysis() != null && !validChecker.checkValidGraphs(currentModel.getCurrentAnalysis(), viewsList.getSelectedItem().toString())) {
+            		viewsList.setForeground(Color.red);
+            	
+            	} else {
+            		viewsList.setForeground(Color.black);
+            	}
+            	
+            });
+            
+            methodsList.addActionListener(e -> {
+                countryObj country= countryList.get(countriesList.getSelectedIndex());
+           	 	int currentMethod = methodsList.getSelectedIndex();
+           	 	analysisType = codes[currentMethod];
+   
+            	if (!validChecker.checkCountryAnalysis(analysisType, country)) {
+            		methodsList.setForeground(Color.red);
+            		countriesList.setForeground(Color.red);
+            	} else {
+            		methodsList.setForeground(Color.black);
+            		countriesList.setForeground(Color.black);
 
+            	}
+            });
 
+            countriesList.addActionListener(e -> {
+                countryObj country= countryList.get(countriesList.getSelectedIndex());
+            	if (!validChecker.checkCountryAnalysis(analysisType, country)) {
+            		countriesList.setForeground(Color.red);
+            		methodsList.setForeground(Color.red);
+
+            	} else {
+            		countriesList.setForeground(Color.black);
+            		methodsList.setForeground(Color.black);
+            	}
+            });
+            
             JPanel south = new JPanel();
             south.add(viewsLabel);
             south.add(viewsList);
@@ -182,8 +253,6 @@ public class MainUI extends JFrame implements resultObserver {
                 analysisInstance.getData(country, analysisType, yearRange,currentModel);
             	}
             });
-
-
         }
 
         public static MainUI getInstance() {

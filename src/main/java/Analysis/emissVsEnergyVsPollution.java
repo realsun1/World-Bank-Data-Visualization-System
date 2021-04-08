@@ -15,7 +15,7 @@ public class emissVsEnergyVsPollution implements Analysis {
 
 	public emissVsEnergyVsPollution(ArrayList<Map<Integer, Double>> dataValues) { 
 		this.dataValues = dataValues;
-		cleanData();
+		this.dataValues = cleanData();
 	}
 
 	@Override
