@@ -1,3 +1,10 @@
+/**
+* This class is the analysis facade that includes all the different analysis types 
+* @author  Navjeeven Mann Singh, Omer Noor, Sundin Nguyen, Rhea Gupta
+* @version 1.0
+* @since   2021-04-07
+*/
+
 package Handlers;
 
 import java.util.ArrayList;
@@ -9,7 +16,13 @@ import dataModels.resultModel;
 
 public class analysisFacade {
 
-
+	/*
+	 * this method gets the data for each analysis type
+	 * @param country This is the first parameter in the method
+	 * @param analysisType This is the second parameter in the method
+	 * @param dataRangen This is the third parameter in the method
+	 * @param currentModel This is the fourth parameter in the method
+	 */
     public void getData(countryObj country, String analysisType, String dateRange, resultModel currentModel) {
     
 
@@ -56,7 +69,12 @@ public class analysisFacade {
        
     }
 
-
+    /*
+     * this method gets the analysis for EmissionGDP
+     * @param country this is the country object 
+     * @param dataRange this is the range of data
+     * @return analysis
+     */
     private RatioEmissionsGDP getEmissionGDP(countryObj country, String dateRange) {
         String[] analysisType = {"EN.ATM.CO2E.PC","NY.GDP.PCAP.CD"};
         ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
@@ -72,6 +90,12 @@ public class analysisFacade {
         return analysis;
     }
 
+    /*
+     * this method gets the analysis for ForestAverage
+     * @param country this is the country object 
+     * @param dataRange this is the range of data
+     * @return analysis
+     */
     private forestAverage getForestAverage(countryObj country, String dateRange) {
         String[] analysisType = {"AG.LND.FRST.ZS"};
         ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
@@ -87,6 +111,12 @@ public class analysisFacade {
         return analysis;
     }
 
+    /*
+     * this method gets the analysis for EducationAverage
+     * @param country this is the country object 
+     * @param dataRange this is the range of data
+     * @return analysis
+     */
     private educationAverage getEducationAverage(countryObj country, String dateRange) {
         String[] analysisType = {"SE.XPD.TOTL.GD.ZS"};
         ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
@@ -102,7 +132,12 @@ public class analysisFacade {
         return analysis;
     }
 
-
+    /*
+     * this method gets the analysis BedVsExpenditure
+     * @param country this is the country object 
+     * @param dataRange this is the range of data
+     * @return analysis
+     */
     private bedVsExpenditure getBedVsExpenditure(countryObj country, String dateRange) {
         String[] analysisType = {"SH.MED.BEDS.ZS", "SH.XPD.CHEX.PC.CD"};
         ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
@@ -118,6 +153,12 @@ public class analysisFacade {
         return analysis;
     }
 
+    /*
+     * this method gets the analysis ExpenditureVsMortality
+     * @param country this is the country object 
+     * @param dataRange this is the range of data
+     * @return analysis
+     */
     private expenditureVsMortality getExpenditureVsMortality(countryObj country, String dateRange) {
         String[] analysisType = {"SH.XPD.CHEX.PC.CD","SP.DYN.IMRT.IN"};
         ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
@@ -132,6 +173,12 @@ public class analysisFacade {
         return analysis;
     }
 
+    /*
+     * this method gets the analysis EducationExpenditureVsHealthExpenditure
+     * @param country this is the country object 
+     * @param dataRange this is the range of data
+     * @return analysis
+     */
     private educationExpenditureVsHealthExpenditure getEducationExpenditureVsHealthExpenditure(countryObj country, String dateRange) {
         String[] analysisType = {"SE.XPD.TOTL.GD.ZS","SH.XPD.CHEX.GD.ZS"};
         ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
@@ -146,6 +193,12 @@ public class analysisFacade {
         return analysis;
     }
 
+    /*
+     * this method gets the analysis EmissVsEnergyVsPollution
+     * @param country this is the country object 
+     * @param dataRange this is the range of data
+     * @return analysis
+     */
     private emissVsEnergyVsPollution getEmissVsEnergyVsPollution(countryObj country, String dateRange) {
         String[] analysisType = {"EN.ATM.CO2E.PC","EN.ATM.PM25.MC.M3","EG.USE.PCAP.KG.OE"};
         ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
@@ -159,7 +212,13 @@ public class analysisFacade {
 
         return analysis;
     }
-
+    
+    /*
+     * this method gets the analysis PollutionVsForest
+     * @param country this is the country object 
+     * @param dataRange this is the range of data
+     * @return analysis
+     */
     private pollutionVsForest getPollutionVsForest(countryObj country, String dateRange) {
         String[] analysisType = {"EN.ATM.PM25.MC.M3","AG.LND.FRST.ZS"};
         ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
@@ -174,7 +233,13 @@ public class analysisFacade {
         return analysis;
     }
 
-
+    /*
+     * this method gets the map
+     * @param country this is the country object 
+     * @param dataRange this is the range of data
+     * @param analysisType this is the analysis type
+     * @return integerDoubleMap the map
+     */
     private Map<Integer, Double> getMap(countryObj country, String analysisType, String dateRange) {
         dataHandler dataHandler = new dataHandler();
         networkHandler network = new networkHandler();

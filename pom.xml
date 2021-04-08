@@ -1,42 +1,48 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>httpTest</groupId>
-  <artifactId>httpTest</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  
-  <repositories>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>httpTest</groupId>
+	<artifactId>httpTest</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<repositories>
 		<repository>
 			<id>maven-repository.java.net</id>
 			<name>Java.net Repository for Maven</name>
 			<url>https://maven.java.net/content/repositories/releases/</url>
 			<layout>default</layout>
 		</repository>
-		  <repository>
-			  <id>mulesoft-releases</id>
-			  <name>MuleSoft Repository</name>
-			  <url>http://repository.mulesoft.org/releases/</url>
-			  <layout>default</layout>
-		  </repository>
-		  <repository>
-			  <id>mulesoft-snapshots</id>
-			  <name>MuleSoft Snapshot Repository</name>
-			  <url>http://repository.mulesoft.org/snapshots/</url>
-			  <layout>default</layout>
-		  </repository>
+		<repository>
+			<id>mulesoft-releases</id>
+			<name>MuleSoft Repository</name>
+			<url>http://repository.mulesoft.org/releases/</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
+			<id>mulesoft-snapshots</id>
+			<name>MuleSoft Snapshot Repository</name>
+			<url>http://repository.mulesoft.org/snapshots/</url>
+			<layout>default</layout>
+		</repository>
 	</repositories>
 
+
 	<dependencies>
-			<dependency>
-				<groupId>com.google.code.gson</groupId>
-				<artifactId>gson</artifactId>
-				<version>2.2.2</version>
-			 </dependency>
-			<!-- https://mvnrepository.com/artifact/jfree/jfreechart -->
-			<dependency>
-				<groupId>org.jfree</groupId>
-				<artifactId>jfreechart</artifactId>
-				<version>1.5.3</version>
-			</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/jfree/jfreechart -->
+		<dependency>
+			<groupId>org.jfree</groupId>
+			<artifactId>jfreechart</artifactId>
+			<version>1.5.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.intellij</groupId>
+			<artifactId>forms_rt</artifactId>
+			<version>7.0.3</version>
+		</dependency>
 	</dependencies>
 
 	<properties>
@@ -44,7 +50,33 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.2.4</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer
+										implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>Login/loginHandler</mainClass>
+								</transformer>
+							</transformers>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
-		 
-  
+
+
+
 </project>

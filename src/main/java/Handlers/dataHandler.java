@@ -1,3 +1,10 @@
+/**
+* This class is the data handler, the data values and the country list
+* @author  Navjeeven Mann Singh, Omer Noor, Sundin Nguyen, Rhea Gupta
+* @version 1.0
+* @since   2021-04-07
+*/
+
 package Handlers;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,11 +20,17 @@ import dataModels.countryObj;
 
 public class dataHandler {
 
+	/*
+	 * this is the constructor of the class
+	 */
 	public dataHandler(){
 
 	}
 	
-	
+	/*
+	 * this method
+	 * @param json
+	 */
 	public Map<Integer, Double> parseJSON(String json) { 
 		JsonArray jsonArray = new JsonParser().parse(json).getAsJsonArray();
 		
@@ -39,6 +52,10 @@ public class dataHandler {
 		return dataDict;
 	}
 	
+	/*
+	 * This method creates and returns the country list read from a file
+	 * @return countryList This has all the countries stored in a list
+	 */
 	public ArrayList<countryObj> fetchCountries() { 
 		ArrayList<countryObj> countryList = new ArrayList<countryObj>();
 		String[] invalidAnalysis;

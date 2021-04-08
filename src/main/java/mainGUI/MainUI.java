@@ -1,3 +1,10 @@
+/**
+* This class creates charts, graphs and creates the buttons and implements resultObserver class
+* @author  Navjeeven Mann Singh, Omer Noor, Sundin Nguyen, Rhea Gupta
+* @version 1.0
+* @since   2021-04-07
+*/
+
 package mainGUI;
 
 import java.awt.BorderLayout;
@@ -27,8 +34,9 @@ import dataModels.resultObserver;
 
 
 public class MainUI extends JFrame implements resultObserver {
+	
         /**
-         *
+         *these are the instance variables
          */
         private static final long serialVersionUID = 1L;
 
@@ -41,6 +49,9 @@ public class MainUI extends JFrame implements resultObserver {
         private JPanel west;
         private graphHandler graphInstance = new graphHandler();
 
+        /*
+         * constructor of the class
+         */
         private MainUI() {
         	
             // Set window title
@@ -248,35 +259,43 @@ public class MainUI extends JFrame implements resultObserver {
             		JOptionPane.showMessageDialog(getInstance(), "Please enter valid years between "+startYear+" to "+ endYear +"!");
             	} else {
                
-                Handlers.analysisFacade analysisInstance = new analysisFacade();
+                analysisFacade analysisInstance = new analysisFacade();
                 String yearRange=String.format("%s:%s",startYear,endYear);
                 analysisInstance.getData(country, analysisType, yearRange,currentModel);
             	}
             });
         }
 
+        /*
+         * getter method that returns instance
+         * @return instance 
+         */
         public static MainUI getInstance() {
             if (instance == null)
-                instance = new mainGUI.MainUI();
+                instance = new MainUI();
             	
 
             return instance;
         }
 
+        /*
+         * main method sets the frame
+         * @param String[] args
+         */
         public static void main(String[] args) {
 
-            JFrame frame = mainGUI.MainUI.getInstance();
+            JFrame frame = MainUI.getInstance();
             frame.setSize(1100, 1000);
             frame.setVisible(true);
        
             
         }
-        
-        
-       
-        
-        
 
+        /*
+         * this method creates the charts
+         * @param west is the panel the graph is on
+         * @param analysis This is the second parameter of the method, the analysis object contains the property of each analysis
+         */
         private void createCharts(JPanel west,Analysis analysis) {
             west.removeAll();
             
@@ -305,12 +324,17 @@ public class MainUI extends JFrame implements resultObserver {
 
         
         
-
+        /*
+    	 * this method updates a graph
+    	 */
 		@Override
 		public void updateGraphs() {
             graphInstance.updateCharts(west, currentModel.getCurrentAnalysis(),viewers);
 		}
 
+		/*
+		 * this method creates a new graph from scratch
+		 */
 		@Override
 		public void createGraphs() {
 			// TODO Auto-generated method stub
