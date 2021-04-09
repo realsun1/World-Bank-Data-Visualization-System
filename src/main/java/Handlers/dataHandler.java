@@ -20,14 +20,14 @@ import dataModels.countryObj;
 
 public class dataHandler {
 
-	/*
+	/**
 	 * this is the constructor of the class
 	 */
 	public dataHandler(){
 
 	}
 	
-	/*
+	/**
 	 * this method
 	 * @param json
 	 */
@@ -52,7 +52,7 @@ public class dataHandler {
 		return dataDict;
 	}
 	
-	/*
+	/**
 	 * This method creates and returns the country list read from a file
 	 * @return countryList This has all the countries stored in a list
 	 */

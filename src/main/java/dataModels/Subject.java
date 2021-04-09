@@ -11,12 +11,12 @@ import java.util.*;
 
 public abstract class Subject {
 	
-	/*
+	/**
 	 * creates a list
 	 */
 	private List<resultObserver> observerList = new ArrayList<resultObserver>();
 	
-	/*
+	/**
 	 * this method calls the add method on the list and adds the data in the parameter
 	 * @param observer The only parameter for the attach method
 	 */
@@ -24,7 +24,7 @@ public abstract class Subject {
 		observerList.add(observer);
 	}
 	
-	/*
+	/**
 	 * this method calls the remove method on the list and removes the data in the parameter
 	 * @param observer The only parameter for the remove method
 	 */
@@ -32,7 +32,7 @@ public abstract class Subject {
 		observerList.remove(observer);
 	}
 	
-	/*
+	/**
 	 * this method calls the remove method on the list and removes the data in the parameter
 	 */
 	public void notifyCreateGraph() {
@@ -41,7 +41,7 @@ public abstract class Subject {
 		}
 	}
 	
-	/*
+	/**
 	 * this method calls the remove method on the list and removes the data in the parameter
 	 */
 	public void notifyUpdateGraph() {

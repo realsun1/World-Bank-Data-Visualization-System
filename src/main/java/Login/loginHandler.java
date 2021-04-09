@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class loginHandler {
 	
-	/*
+	/**
 	 * this main method creates a new loginGUI object
 	 * @param String[] args
 	 */
@@ -23,7 +23,7 @@ public class loginHandler {
         login.setLocationRelativeTo(null);
     }
 
-    /*
+    /**
      * this method checks the user's username and password
      * @param username contains the user's username
      * @param password contains the user's password
@@ -50,7 +50,7 @@ public class loginHandler {
         return 4;
     }
 
-    /*
+    /**
      * this method encodes the password
      * @param password contains the password
      * @throws NoSuchAlgorithmExcpetion

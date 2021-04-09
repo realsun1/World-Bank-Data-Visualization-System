@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class bedVsExpenditure implements Analysis {
 
-	/*
+	/**
 	 * these are the instance variables of the class
 	 */
 	private ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
@@ -25,7 +25,7 @@ public class bedVsExpenditure implements Analysis {
 	private String[] validGraphs = {"Line Chart","Bar Chart","Scatter Chart","Report Chart"};
 	private ArrayList<Map<Integer, Double>> results = new ArrayList<Map<Integer, Double>>();
 	
-	/*
+	/**
 	 * this is the constructor of the class, it sets the data into dataValues and calls the performComputation method
 	 * @param data this contains data of type ArrayList<Map<Integer, Double>>
 	 */
@@ -34,7 +34,7 @@ public class bedVsExpenditure implements Analysis {
 		performComputation();
 	}
 	
-	/*
+	/**
 	 * {@inheritdoc}
 	 * this method perform any computation that needs to be done to calculate ratio
 	 */
@@ -42,17 +42,20 @@ public class bedVsExpenditure implements Analysis {
 	public void performComputation() {
 		Map<Integer, Double> map = new HashMap<Integer, Double>();
 	
-		for(Map<Integer, Double> data: dataValues) {
+		for(Map<Integer, Double> data: cleanData()) {
 			
 			for(Integer year: data.keySet()) {
-				map.put(year,((dataValues.get(0).get(year))/(dataValues.get(0).get(year))));
+		
+				if (dataValues.get(1).get(year) != 0.0) {
+				map.put(year,((dataValues.get(0).get(year))/(dataValues.get(1).get(year))));
+				}
 			}
 			
 		}
 		results.add(map);
 	}
 	
-	/*
+	/**
 	 * {@inheritdoc}
 	 * this is a getter method to get the legend of graph
 	 * @return legend This returns the legend of the graph
@@ -62,7 +65,7 @@ public class bedVsExpenditure implements Analysis {
 		return legend;
 	}
 
-	/*
+	/**
 	 * {@inheritdoc}
 	 * this is a getter method to get the title of analysis
 	 * @return title This returns the title of the analysis
@@ -72,7 +75,7 @@ public class bedVsExpenditure implements Analysis {
 		return title;
 	}
 
-	/*
+	/**
 	 * {@inheritdoc}
 	 * this is a getter method to get the labels of graph
 	 * @return labels This returns the labels of the graph
@@ -82,7 +85,7 @@ public class bedVsExpenditure implements Analysis {
 		return labels;
 	}
 
-	/*
+	/**
 	 * {@inheritdoc}
 	 * this is a getter method that gets the results after the data is cleaned
 	 * @return results This is the data after it is cleaned out
@@ -91,7 +94,7 @@ public class bedVsExpenditure implements Analysis {
 		return results;
 	}
 
-	/*
+	/**
 	 * {@inheritdoc}
 	 * this is a getter method to get all the valid graph types 
 	 * @return validGraphs This returns all the valid graphs
@@ -102,7 +105,7 @@ public class bedVsExpenditure implements Analysis {
 		return validGraphs;
 	}
 
-	/*
+	/**
 	 * {@inheritdoc}
 	 * this method cleans the data of not valid data values or empty data values
 	 * @return cleanData This returns the cleaned out data

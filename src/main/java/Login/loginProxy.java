@@ -15,12 +15,12 @@ import java.util.*;
 
 public class loginProxy {
 	
-	/*
+	/**
 	 * this instance variable creates a list
 	 */
     Set<user> list = new HashSet<user>();
 
-    /*
+    /**
      * this is the constructor of the class
      * @throws FileNotFoundException This is thrown if the file is not found 
      */
@@ -34,7 +34,7 @@ public class loginProxy {
         }
     }
 
-    /*
+    /**
      * this method prints the list that contains the username and passwords
      */
     public void printUserList() {
@@ -44,7 +44,7 @@ public class loginProxy {
         }
     }
 
-    /*
+    /**
      * this method checks the user information
      * @param username This is the username of the user
      * @param pass This is the password of the user
@@ -62,7 +62,7 @@ public class loginProxy {
         return 3;
     }
 
-    /*
+    /**
      * this method inserts the user
      * @param newUser contains the new users information
      */
