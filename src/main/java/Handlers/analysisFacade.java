@@ -16,7 +16,7 @@ import dataModels.resultModel;
 
 public class analysisFacade {
 
-	/*
+	/**
 	 * this method gets the data for each analysis type
 	 * @param country This is the first parameter in the method
 	 * @param analysisType This is the second parameter in the method
@@ -69,7 +69,7 @@ public class analysisFacade {
        
     }
 
-    /*
+    /**
      * this method gets the analysis for EmissionGDP
      * @param country this is the country object 
      * @param dataRange this is the range of data
@@ -90,7 +90,7 @@ public class analysisFacade {
         return analysis;
     }
 
-    /*
+    /**
      * this method gets the analysis for ForestAverage
      * @param country this is the country object 
      * @param dataRange this is the range of data
@@ -111,7 +111,7 @@ public class analysisFacade {
         return analysis;
     }
 
-    /*
+    /**
      * this method gets the analysis for EducationAverage
      * @param country this is the country object 
      * @param dataRange this is the range of data
@@ -132,7 +132,7 @@ public class analysisFacade {
         return analysis;
     }
 
-    /*
+    /**
      * this method gets the analysis BedVsExpenditure
      * @param country this is the country object 
      * @param dataRange this is the range of data
@@ -153,7 +153,7 @@ public class analysisFacade {
         return analysis;
     }
 
-    /*
+    /**
      * this method gets the analysis ExpenditureVsMortality
      * @param country this is the country object 
      * @param dataRange this is the range of data
@@ -173,7 +173,7 @@ public class analysisFacade {
         return analysis;
     }
 
-    /*
+    /**
      * this method gets the analysis EducationExpenditureVsHealthExpenditure
      * @param country this is the country object 
      * @param dataRange this is the range of data
@@ -193,7 +193,7 @@ public class analysisFacade {
         return analysis;
     }
 
-    /*
+    /**
      * this method gets the analysis EmissVsEnergyVsPollution
      * @param country this is the country object 
      * @param dataRange this is the range of data
@@ -213,7 +213,7 @@ public class analysisFacade {
         return analysis;
     }
     
-    /*
+    /**
      * this method gets the analysis PollutionVsForest
      * @param country this is the country object 
      * @param dataRange this is the range of data
@@ -233,7 +233,7 @@ public class analysisFacade {
         return analysis;
     }
 
-    /*
+    /**
      * this method gets the map
      * @param country this is the country object 
      * @param dataRange this is the range of data

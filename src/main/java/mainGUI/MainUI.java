@@ -35,7 +35,7 @@ import dataModels.resultObserver;
 
 public class MainUI extends JFrame implements resultObserver {
 	
-        /**
+        /***
          *these are the instance variables
          */
         private static final long serialVersionUID = 1L;
@@ -49,7 +49,7 @@ public class MainUI extends JFrame implements resultObserver {
         private JPanel west;
         private graphHandler graphInstance = new graphHandler();
 
-        /*
+        /**
          * constructor of the class
          */
         private MainUI() {
@@ -266,7 +266,7 @@ public class MainUI extends JFrame implements resultObserver {
             });
         }
 
-        /*
+        /**
          * getter method that returns instance
          * @return instance 
          */
@@ -278,7 +278,7 @@ public class MainUI extends JFrame implements resultObserver {
             return instance;
         }
 
-        /*
+        /**
          * main method sets the frame
          * @param String[] args
          */
@@ -291,7 +291,7 @@ public class MainUI extends JFrame implements resultObserver {
             
         }
 
-        /*
+        /**
          * this method creates the charts
          * @param west is the panel the graph is on
          * @param analysis This is the second parameter of the method, the analysis object contains the property of each analysis
@@ -324,7 +324,7 @@ public class MainUI extends JFrame implements resultObserver {
 
         
         
-        /*
+        /**
     	 * this method updates a graph
     	 */
 		@Override
@@ -332,7 +332,7 @@ public class MainUI extends JFrame implements resultObserver {
             graphInstance.updateCharts(west, currentModel.getCurrentAnalysis(),viewers);
 		}
 
-		/*
+		/**
 		 * this method creates a new graph from scratch
 		 */
 		@Override

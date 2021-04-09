@@ -48,7 +48,7 @@ import Analysis.Analysis;
 
 public class graphHandler {
 	
-	/*
+	/**
 	 * these are instance variables creating the different graphs 
 	 */
     DefaultCategoryDataset barSet = new DefaultCategoryDataset();
@@ -58,7 +58,7 @@ public class graphHandler {
     TimeSeriesCollection scatterSet2 = new TimeSeriesCollection();
     XYSeriesCollection lineSet = new XYSeriesCollection();
 
-    /*
+    /**
      * this method creates the report
      * @param west This is the first parameter of the method
      * @param analysis This is the second parameter of the method, the analysis object contains the property of each analysis
@@ -88,12 +88,15 @@ public class graphHandler {
         
         for (int i = first; i <= last; i++) {
             reportMessage.append("Year: "+i+"\n");
-            reportMessage.append("\t"+analysis.getLegend()[0] + "=>"+analysis.getResults().get(0).get(i)+"\n");
+            Double message1 = analysis.getResults().get(0).get(i) != null ? analysis.getResults().get(0).get(i) : 0.0;
+            reportMessage.append("\t"+analysis.getLegend()[0] + "=>"+message1+"\n");
             if (analysis.getResults().size()>=2){
-                reportMessage.append("\t"+analysis.getLegend()[1] + "=>"+analysis.getResults().get(1).get(i)+"\n");
+                Double message2 = analysis.getResults().get(1).get(i) != null ? analysis.getResults().get(1).get(i) : 0.0;
+                reportMessage.append("\t"+analysis.getLegend()[1] + "=>"+message2+"\n");
             }
             if (analysis.getResults().size()==3){
-                reportMessage.append("\t"+analysis.getLegend()[2] + "=>"+analysis.getResults().get(2).get(i)+"\n");
+                Double message3 = analysis.getResults().get(2).get(i) != null ? analysis.getResults().get(2).get(i) : 0.0;
+                reportMessage.append("\t"+analysis.getLegend()[2] + "=>"+message3+"\n");
             }
         }
 
@@ -108,7 +111,7 @@ public class graphHandler {
         west.add(outputScrollPane);
     }
 
-    /*
+    /**
      * this method creates a scatter plot
      * @param west This is the first parameter of the method
      * @param analysis This is the second parameter of the method, the analysis object contains the property of each analysis
@@ -171,7 +174,7 @@ public class graphHandler {
         west.add(chartPanel);
     }
 
-   /*
+   /**
     * this method creates a pie chart
     * @param west This is the first parameter of the method
     * @param analysis This is the second parameter of the method, the analysis object contains the property of each analysis
@@ -197,7 +200,7 @@ public class graphHandler {
         west.add(chartPanel);
     }
 
-   /*
+   /**
     * this method creates a bar graph
     * @param west This is the first parameter of the method, west is the panel the graph is on
     * @param analysis This is the second parameter of the method, the analysis object contains the property of each analysis
@@ -256,7 +259,7 @@ public class graphHandler {
         chartPanel.setBackground(Color.white);
         west.add(chartPanel);
     }
-   /*
+   /**
     * this method creates a line graph
     * @param west This is the first parameter of the method, west is the panel the graph is on
     * @param analysis This is the second parameter of the method, the analysis object contains the property of each analysis
@@ -324,7 +327,7 @@ public class graphHandler {
 
     }
    
-   /*
+   /**
     * this method updates the report
     * @param west This is the second parameter of the method, west is the panel the graph is on
     * @param analysis This is the first parameter of the method, the analysis object contains the property of each analysis
@@ -367,7 +370,7 @@ public class graphHandler {
 
     }
     
-    /*
+    /**
      * this method updates a bar graph
      * @param analysis The analysis object contains the property of each analysis
      */
@@ -395,7 +398,7 @@ public class graphHandler {
 
     }
     
-    /*
+    /**
      * this method updates a line graph
      * @param analysis The analysis object contains the property of each analysis
      */
@@ -431,7 +434,7 @@ public class graphHandler {
         }
 	}
 	
-	/*
+	/**
      * this method updates a scatter plot
      * @param analysis The analysis object contains the property of each analysis
      */
@@ -466,7 +469,7 @@ public class graphHandler {
         scatterSet.addSeries(series2);
 	}
 	
-	/*
+	/**
      * this method updates a pie chart
      * @param analysis The analysis object contains the property of each analysis
      */

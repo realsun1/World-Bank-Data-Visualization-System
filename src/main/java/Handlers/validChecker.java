@@ -14,14 +14,14 @@ import dataModels.countryObj;
 public class validChecker {
 
 
-	/*
+	/**
 	 * constructor
 	 */
 	public validChecker() {
 		
 	}
 	
-	/*
+	/**
 	 * this method checks if the years entered and the country entered by the user is valid
 	 * @param startYear This is the first parameter of the method
 	 * @param endYear This is the second parameter of the method
@@ -32,7 +32,7 @@ public class validChecker {
 		return ((endYear - startYear) <= 0 || (startYear < country.getValidStart() || endYear > country.getValidEnd()));
 	}
 	
-	/*
+	/**
 	 * this method checks if the country analysis chosen is valid
 	 * @param chosenAnalysis This is the first parameter of the method
 	 * @param country This is the second parameter of the method
@@ -52,7 +52,7 @@ public class validChecker {
 		return isValid;
 	}
 	
-	/*
+	/**
 	 * this method checks if the graph chosen is valid
 	 * @param currentAnalysis This is the first parameter of the method
 	 * @param graph This is the second parameter of the method
@@ -75,7 +75,7 @@ public class validChecker {
 		return isValid;
 	}
 	
-	/*
+	/**
 	 * this method checks if the data is valid
 	 * @param toCheck This is the first parameter of the method, it is of type ArrayList
 	 * @return a boolean value, if the result is valid (true) or not valid (false)

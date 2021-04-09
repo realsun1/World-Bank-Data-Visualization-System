@@ -16,14 +16,14 @@ import dataModels.countryObj;
 
 public class networkHandler {
 
-	/*
+	/**
 	 * this is the constructor of the class
 	 */
 	networkHandler() { 
 		
 	}
 	
-	/*
+	/**
 	 * this method calls on the world back api and collects all the information
 	 * @param country This is the first parameter of the method
 	 * @param analysisType This is the second parameter of the method

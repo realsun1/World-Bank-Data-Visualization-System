@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class RatioEmissionsGDP implements Analysis {
 
-	/*
+	/**
 	 * these are the instance variables of the class
 	 */
 	private ArrayList<Map<Integer, Double>> dataValues = new ArrayList<Map<Integer, Double>>();
@@ -23,7 +23,7 @@ public class RatioEmissionsGDP implements Analysis {
 	private String title = "Ratio of CO2 emissions (metric tons per capita) and GDP per capita";
 	private String[] validGraphs = {"Bar Chart", "Line Chart", "Scatter Chart"};
 
-	/*
+	/**
 	 * this is the constructor of the class, it sets the data into dataValues and calls the performComputation method
 	 * @param data this contains data of type ArrayList<Map<Integer, Double>>
 	 */
@@ -33,7 +33,7 @@ public class RatioEmissionsGDP implements Analysis {
 
 	}
 
-	/*
+	/**
 	 * {@inheritdoc}
 	 * this method perform any computation that needs to be done to calculate ratios
 	 */
@@ -46,7 +46,9 @@ public class RatioEmissionsGDP implements Analysis {
 				Double g = (dataValues.get(0)).get(year);
 				Double e = (dataValues.get(1)).get(year);
 		
+		         if (e != 0.0 && g != 0.0) {
 				computationResults.put(year,(g/e));
+		         }
 			
 			}
 			
@@ -54,7 +56,7 @@ public class RatioEmissionsGDP implements Analysis {
 		results.add(computationResults);
 	}
 
-	/*
+	/**
 	 * {@inheritdoc}
 	 * this is a getter method to get the legend of graph
 	 * @return legend This returns the legend of the graph
@@ -64,7 +66,7 @@ public class RatioEmissionsGDP implements Analysis {
 		return legend;
 	}
 
-	/*
+	/**
 	 * {@inheritdoc}
 	 * this is a getter method to get the labels of graph
 	 * @return labels This returns the labels of the graph
@@ -74,7 +76,7 @@ public class RatioEmissionsGDP implements Analysis {
 		return labels;
 	}
 	
-	/*
+	/**
 	 * {@inheritdoc}
 	 * this is a getter method to get the title of analysis
 	 * @return title This returns the title of the analysis
@@ -84,7 +86,7 @@ public class RatioEmissionsGDP implements Analysis {
 		return title;
 	}
 
-	/*
+	/**
 	 * {@inheritdoc}
 	 * this is a getter method that gets the results after the data is cleaned
 	 * @return results This is the data after it is cleaned out
@@ -94,7 +96,7 @@ public class RatioEmissionsGDP implements Analysis {
 		return results;
 	}
 
-	/*
+	/**
 	 * {@inheritdoc}
 	 * this is a getter method to get all the valid graph types 
 	 * @return validGraphs This returns all the valid graphs
@@ -105,7 +107,7 @@ public class RatioEmissionsGDP implements Analysis {
 		return validGraphs;
 	}
 	
-	/*
+	/**
 	 * {@inheritdoc}
 	 * this method cleans the data of not valid data values or empty data values
 	 * @return cleanData This returns the cleaned out data

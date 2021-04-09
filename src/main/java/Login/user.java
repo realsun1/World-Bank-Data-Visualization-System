@@ -9,13 +9,13 @@ package Login;
 
 public class user {
 	
-	/*
+	/**
 	 * these are the instance variables of the class
 	 */
     String userName;
     String password;
 
-    /*
+    /**
      * constructor of the class
      * @param user This is the first parameter to the constructor method
      * @param pass This is the second parameter to the constructor method
@@ -25,7 +25,7 @@ public class user {
         password= pass;
     }
     
-    /*
+    /**
      * This method is used to get the password
      * @return password This returns the password
      */
@@ -33,7 +33,7 @@ public class user {
         return password;
     }
     
-    /*
+    /**
      * This method is used to get the username
      * @return userName This returns the username
      */

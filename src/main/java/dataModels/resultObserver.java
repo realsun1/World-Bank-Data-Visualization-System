@@ -8,12 +8,12 @@ package dataModels;
 
 public interface resultObserver {
 	
-	/*
+	/**
 	 * this method updates a graph
 	 */
 	public void updateGraphs();
 	
-	/*
+	/**
 	 * this method creates a new graph from scratch
 	 */
 	public void createGraphs();
